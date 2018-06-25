@@ -1,0 +1,8 @@
+<div *ngIf=currentUser>
+    <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
+   <p>{{ currentUser.email }} </p>
+ <img *ngIf=currentUser.photoURL src= {{currentUser.photoURL}} alt="Profile Picture">
+ </div>
+
+ <a (click)="onSignOut()"
+           style="cursor:pointer">Déconnexion</a>
