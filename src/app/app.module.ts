@@ -12,6 +12,9 @@ import { AuthService } from './services/auth.service';
 import { LobbyComponent } from './lobby/lobby.component';
 import { IndexComponent } from './index/index.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogModule } from 'primeng/primeng';
+
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -37,7 +40,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    DialogModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

@@ -1,8 +1,47 @@
 <div *ngIf=currentUser>
-    <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
-   <p>{{ currentUser.email }} </p>
- <img *ngIf=currentUser.photoURL src= {{currentUser.photoURL}} alt="Profile Picture">
- </div>
+  <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
+  <p>{{ currentUser.email }} </p>
+  <img *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture">
+</div>
 
- <a (click)="onSignOut()"
-           style="cursor:pointer">Déconnexion</a>
+<button (click)="onSignOut()" style="cursor:pointer">Déconnexion</button>
+<div>
+    <input type="text" id="newEmail" [(ngModel)]="newEmail">
+     <button type="button" class="btn btn-primary" (click)="onOpenDial(0)">
+        Changement Email
+      </button>
+  </div>
+<div>
+  <input type="password" id="newPSW" [(ngModel)]="newPSW">
+   <button type="button" class="btn btn-primary" (click)="onOpenDial(1)">
+      Changement PSW
+    </button>
+</div>
+
+
+<!-- ___________________formulaire re authentification______________________________ -->
+<!--_______________________________________________________________________________-->
+<!-- DIALOG -->
+<p-dialog header="Identifients" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
+  <div class="ui-g ui-fluid">
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+     
+        <form [formGroup]="signinForm" (ngSubmit)="onSubmitReAuth()">
+          <div class="form-group">
+            <label for="email">Adresse mail actuel</label>
+            <input type="text" id="email" class="form-control" formControlName="email">
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe actuel</label>
+            <input type="password" id="password" class="form-control" formControlName="password">
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="signinForm.invalid">Valider</button>
+        </form>
+        <p class="text-danger">{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+
+</p-dialog>

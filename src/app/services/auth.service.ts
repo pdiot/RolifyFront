@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class AuthService {
               this.currentUser = user;
               resolve(user);
             } else {
-             // reject();
+              // reject();
             }
           }
         );
@@ -98,6 +99,70 @@ export class AuthService {
       (error) => {
         this.currentUser = null;
       });
-
   }
+
+  updatePassword(email: string, psw: string, newPsw: string) {
+    return new Promise(
+      (resolve, reject) => {
+        // Prompt the user to re-provide their sign-in credentials
+        // create the credentials from the SDK
+        const credentials = firebase.auth.EmailAuthProvider.credential(
+          email,
+          psw
+        );
+        // reauthenticate
+        this.currentUser.reauthenticateAndRetrieveDataWithCredential(credentials)
+          .then(() => {
+            // User re-authenticated.
+            this.currentUser.updatePassword(newPsw)
+              .then(function () {
+                // Update successful.
+                console.log('update psw');
+                resolve(true);
+              })
+              .catch((error) => {
+                // An error happened.
+                reject(error);
+                console.log(error);
+              });
+
+          }).catch(function (error) {
+            // An error happened.
+          });
+
+      });
+  }
+
+  updateEmail(email: string, psw: string, newEmail: string) {
+    return new Promise(
+      (resolve, reject) => {
+        // Prompt the user to re-provide their sign-in credentials
+        // create the credentials from the SDK
+        const credentials = firebase.auth.EmailAuthProvider.credential(
+          email,
+          psw
+        );
+        // reauthenticate
+        this.currentUser.reauthenticateAndRetrieveDataWithCredential(credentials)
+          .then(() => {
+            // User re-authenticated.
+            this.currentUser.updateEmail(newEmail)
+              .then(function () {
+                // Update successful.
+                console.log('update email');
+                resolve(true);
+              })
+              .catch((error) => {
+                // An error happened.
+                reject(error);
+                console.log(error);
+              });
+
+          }).catch(function (error) {
+            // An error happened.
+          });
+
+      });
+  }
+
 }
