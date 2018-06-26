@@ -14,6 +14,9 @@ import { IndexComponent } from './index/index.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/primeng';
+import { MessageComponent } from './message/message.component';
+import {GrowlModule} from 'primeng/growl';
+import { MessageService } from './services/message.service';
 
 
 const appRoutes: Routes = [
@@ -33,6 +36,7 @@ const appRoutes: Routes = [
     SigninComponent,
     LobbyComponent,
     IndexComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,8 +47,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     DialogModule,
+    GrowlModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

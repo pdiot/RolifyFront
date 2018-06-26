@@ -26,7 +26,7 @@ export class LobbyComponent implements OnInit {
     this.authService.getCurrentUser().then(
       (user) => {
         this.currentUser = user; console.log(user);
-      //  this.newEmail = this.currentUser.email;
+        //  this.newEmail = this.currentUser.email;
       },
       (error) => {
         this.currentUser = null;
@@ -61,28 +61,30 @@ export class LobbyComponent implements OnInit {
       })
         .catch(err => {
           // TODO message identifients incorrects
-          console.log(err); });
+          console.log(err);
+        });
     } else {
-    this.authService.updatePassword(email, password, this.newPSW).then(() => {
-      // TODO message update reussie
-      this.newPSW = '';
-      this.signinForm.get('email').setValue = null;
-      this.signinForm.get('password').setValue = null;
-      this.displayDialog = false;
-    })
-      .catch(err => {
-        // TODO message identifients incorrects
-        console.log(err); });
-      }
+      this.authService.updatePassword(email, password, this.newPSW).then(() => {
+        // TODO message update reussie
+        this.newPSW = '';
+        this.signinForm.get('email').setValue = null;
+        this.signinForm.get('password').setValue = null;
+        this.displayDialog = false;
+      })
+        .catch(err => {
+          // TODO message identifients incorrects
+          console.log(err);
+        });
+    }
   }
 
   onOpenDial(nb: number) {
-if (nb === 0) {  // Email
-    this.displayDialog = true;
-} else {  // Password
-  this.isUpdateEmail = false;
-    this.displayDialog = true;
-}
+    if (nb === 0) {  // Email
+      this.displayDialog = true;
+    } else {  // Password
+      this.isUpdateEmail = false;
+      this.displayDialog = true;
+    }
   }
 
 }

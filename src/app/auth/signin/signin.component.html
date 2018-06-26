@@ -19,6 +19,9 @@
         <button class="btn btn-primary"
                 type="submit"
                 [disabled]="signinForm.invalid">Se connecter</button>
+                <button type="button" class="btn btn-danger" (click)="emailReset()">
+                    psw forgot
+                  </button>
       </form>
       <p class="text-danger">{{ errorMessage }}</p>
     </div>

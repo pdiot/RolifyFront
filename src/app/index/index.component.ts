@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 export class IndexComponent implements OnInit {
 
   currentUser: firebase.User;
-
+  isReady = false;   // pour que la page s'affiche seulement si pas de user
 
   constructor(private router: Router, private authService: AuthService, ) { }
 
@@ -23,6 +23,7 @@ export class IndexComponent implements OnInit {
       },
       (error) => {
         this.currentUser = null;
+        this.isReady = true;
       });
 
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as firebase from 'firebase';
+import { Unsubscribe } from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,9 @@ import * as firebase from 'firebase';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  rootPage: any;
+
+
   constructor() {
     // Initialize Firebase
     const config = {
@@ -14,9 +18,21 @@ export class AppComponent {
       authDomain: 'rolify-30ec4.firebaseapp.com',
       databaseURL: 'https://rolify-30ec4.firebaseio.com',
       projectId: 'rolify-30ec4',
-      storageBucket: '',
+      storageBucket: 'rolify-30ec4.appspot.com',
       messagingSenderId: '176487121895'
     };
     firebase.initializeApp(config);
+
+    // const unsubscribe: Unsubscribe = firebase
+    //   .auth()
+    //   .onAuthStateChanged(user => {
+    //     if (!user) {
+    //       this.rootPage = 'index';
+    //       unsubscribe();
+    //     } else {
+    //       this.rootPage = 'lobby';
+    //       unsubscribe();
+    //     }
+    //   });
   }
 }

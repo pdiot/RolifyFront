@@ -42,4 +42,9 @@ export class SigninComponent implements OnInit {
     );
   }
 
+  emailReset() {
+    const email = this.signinForm.get('email').value;
+    this.authService.emailReset(email);
+  }
+
 }

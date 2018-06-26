@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import { Subject } from 'rxjs';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,13 @@ import { Subject } from 'rxjs';
 export class AuthService {
 
   currentUser: firebase.User;
+  storageRef = firebase.storage().ref();
 
-  constructor() {
+  constructor(private messageService: MessageService) {
+
     this.getCurrentUser();
+    firebase.auth().languageCode = 'fr'; // langage du mail
+
   }
 
   getCurrentUser() {
@@ -20,6 +24,7 @@ export class AuthService {
           (user) => {
             if (user) {
               this.currentUser = user;
+              this.messageService.showSuccess('Welcome ' + user.displayName, 'Back in the Game');
               resolve(user);
             } else {
               // reject();
@@ -30,29 +35,11 @@ export class AuthService {
     );
   }
 
-  createNewUser(email: string, password: string, pseudo: string, imgURL: string) {
+  createNewUser(email: string, password: string) {
     return new Promise(
       (resolve, reject) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(
           () => {
-            // TODO lien avec BDD
-            this.getCurrentUser().then(
-              (user) => {
-                this.currentUser = user;
-                this.currentUser.updateProfile({
-                  displayName: pseudo,
-                  photoURL: imgURL
-                }).then(function () {
-                  console.log('update succes');
-                  // Update successful.
-                }).catch(function (error) {
-                  // An error happened.
-                });
-              },
-              (error) => {
-                this.currentUser = null;
-              });
-
             resolve();
           },
           (error) => {
@@ -68,7 +55,10 @@ export class AuthService {
       (resolve, reject) => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(
           () => {
-            resolve();
+            this.getCurrentUser().then(user => {
+              this.messageService.showSuccess('Welcome back ' + user.displayName, 'Back');
+              resolve(user);
+            });
           },
           (error) => {
             reject(error);
@@ -83,21 +73,19 @@ export class AuthService {
   }
 
   updateNamePhoto(nom: string, url: string) {
-    this.getCurrentUser().then(
-      (user) => {
-        this.currentUser = user;
+    return new Promise<any>(
+      (resolve, reject) => {
         this.currentUser.updateProfile({
           displayName: nom,
           photoURL: url
-        }).then(function () {
-          console.log('update succes');
+        }).then(() => {
           // Update successful.
-        }).catch(function (error) {
+          resolve();
+        }).catch((error) => {
           // An error happened.
+          reject(error);
         });
-      },
-      (error) => {
-        this.currentUser = null;
+
       });
   }
 
@@ -164,5 +152,16 @@ export class AuthService {
 
       });
   }
+
+  emailReset(emailAddress: string) {
+    firebase.auth().sendPasswordResetEmail(emailAddress).then(() => {
+      // Email sent.
+      console.log('email sent');
+    }).catch((error) => {
+      // An error happened.
+      console.log(error);
+    });
+  }
+
 
 }
