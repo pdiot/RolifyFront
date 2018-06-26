@@ -1,23 +1,48 @@
 <div *ngIf=currentUser>
   <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
   <p>{{ currentUser.email }} </p>
-  <img *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture">
+  <img *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture" width="200px">
 </div>
 
 <button (click)="onSignOut()" style="cursor:pointer">Déconnexion</button>
 <div>
-    <input type="text" id="newEmail" [(ngModel)]="newEmail">
-     <button type="button" class="btn btn-primary" (click)="onOpenDial(0)">
-        Changement Email
-      </button>
-  </div>
+  <input type="text" id="newEmail" [(ngModel)]="newEmail">
+  <button type="button" class="btn btn-primary" (click)="onOpenDial(0)">
+    Changement Email
+  </button>
+</div>
 <div>
   <input type="password" id="newPSW" [(ngModel)]="newPSW">
-   <button type="button" class="btn btn-primary" (click)="onOpenDial(1)">
-      Changement PSW
-    </button>
+  <button type="button" class="btn btn-primary" (click)="onOpenDial(1)">
+    Changement PSW
+  </button>
 </div>
 
+<h3>chgm pseudo-img</h3>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <form [formGroup]="modifPsImgForm" (ngSubmit)="onSubmitmodifPsImg()">
+      <div class="form-group">
+        <label for="pseudo">Pseudo</label>
+        <input type="text" id="pseudo" class="form-control" formControlName="pseudo">
+      </div>
+      <div *ngIf="!modifPsImgForm.invalid && newUrl">
+        <div class="progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+        </div>
+      </div>
+
+      <div class="upload-btn-wrapper">
+        <button *ngIf="!newUrl" class="btn btnUpl">Upload a file</button>
+        <button *ngIf="newUrl" class="btn btnUrl">{{newUrl.slice(12)}}</button>
+        <input type="file" (change)="onFileChanged($event)" name="myfile" formControlName="newUrl"/>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="modifPsImgForm.invalid">Enregistrer</button>
+    </form>
+    <p class="text-danger">{{ errorMessagePsImg }}</p>
+  </div>
+</div>
 
 <!-- ___________________formulaire re authentification______________________________ -->
 <!--_______________________________________________________________________________-->
@@ -27,7 +52,7 @@
 
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2">
-     
+
         <form [formGroup]="signinForm" (ngSubmit)="onSubmitReAuth()">
           <div class="form-group">
             <label for="email">Adresse mail actuel</label>

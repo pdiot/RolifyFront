@@ -15,17 +15,19 @@
         <input type="text" id="nom" class="form-control" formControlName="nom">
       </div>
 
-      <div *ngIf="currentUpload">
+      <div *ngIf="!signupForm.invalid">
         <div class="progress">
           <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
         </div>
         <!-- Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete -->
       </div>
 
-      <div class="upload-btn-wrapper">
-        <button class="btn">Upload a file</button>
+      <div  class="upload-btn-wrapper">
+        <button *ngIf="!url" class="btn btnUpl">Upload a file</button>
+        <button *ngIf="url" class="btn btnUrl">{{url.slice(12)}}</button>
         <input type="file" (change)="onFileChanged($event)" name="myfile" class="form-control" formControlName="url" />
       </div>
+
       <div>
         <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid">Créer mon compte</button>
       </div>

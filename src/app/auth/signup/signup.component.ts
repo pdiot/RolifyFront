@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   errorMessage: string;
   currentUpload: Upload = null;
-
+url: string = null;
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -41,6 +41,8 @@ export class SignupComponent implements OnInit {
   onFileChanged(event) {  // recup de l'img et transformtion en Upload
     const file = event.target.files[0];
     this.currentUpload = new Upload(file);
+    this.url = this.signupForm.get('url').value;
+    console.log(' url ' +  this.url);
   }
 
   onSubmit() {

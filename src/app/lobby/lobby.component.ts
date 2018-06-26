@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Upload } from '../classes/upload';
+import { UploadService } from '../services/upload.service';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-lobby',
@@ -11,28 +14,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LobbyComponent implements OnInit {
   newPSW = '';
   newEmail = '';
+  newPseudo = '';
+  newUrl = '';
   currentUser: firebase.User;
   // isAuth: boolean;
+  currentUpload: Upload = null;
 
   signinForm: FormGroup;
   errorMessage: string;
   displayDialog = false;
   isUpdateEmail = true;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { }
+  modifPsImgForm: FormGroup;
+  errorMessagePsImg: string;
+
+
+  constructor(private uploadService: UploadService,
+    private formBuilder: FormBuilder, private router: Router,
+    private messageService: MessageService,
+    private authService: AuthService) { }
 
   ngOnInit() {
 
     this.authService.getCurrentUser().then(
       (user) => {
-        this.currentUser = user; console.log(user);
-        //  this.newEmail = this.currentUser.email;
+        this.currentUser = user;
+        //  this.newEmail = user.email;
+        this.modifPsImgForm.get('pseudo').setValue(user.displayName);
+
       },
       (error) => {
         this.currentUser = null;
       });
 
     this.initFormReAuth();
+    this.initFormPsImg();
   }
 
   onSignOut() {
@@ -84,6 +100,62 @@ export class LobbyComponent implements OnInit {
     } else {  // Password
       this.isUpdateEmail = false;
       this.displayDialog = true;
+    }
+  }
+
+  // IMG - pseudo
+  initFormPsImg() {
+    this.modifPsImgForm = this.formBuilder.group({
+      pseudo: ['', [Validators.required]],
+      newUrl: ['']
+    });
+  }
+
+  onFileChanged(event) {  // recup de l'img et transformtion en Upload
+    const file = event.target.files[0];
+    this.currentUpload = new Upload(file);
+    this.newUrl = this.modifPsImgForm.get('newUrl').value;
+    // console.log(' url ' +  this.url);
+  }
+
+
+  onSubmitmodifPsImg() {
+    const pseudo = this.modifPsImgForm.get('pseudo').value;
+    if (this.newUrl) { // changement d'avatar
+
+      this.currentUser.getIdToken().then(
+        (alienKey) => {  // Recup de l'id
+          this.uploadService.pushUpload(this.currentUpload, alienKey).then( // upload img dans firebase et recup de l' url
+            (upload) => {
+              this.authService.updateNamePhoto(pseudo, upload.url).then( // enregistrement du pseudo et de l'img dans firebase
+                () => {
+                  this.router.navigate(['/lobby']);
+                  this.messageService.showSuccess('Update success baby ' + pseudo, 'Update');
+                },
+                (error) => {
+                  this.router.navigate(['/lobby']);
+                  this.messageService.showSuccess('Welcome ' + pseudo + '; error name or photo', 'NEW PLAYER');
+                });
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        },
+        (error) => {
+          console.log(error);
+        });
+
+    } else { // pas de changement d'avatar
+      this.authService.updateNamePhoto(pseudo, this.currentUser.photoURL).then( // enregistrement du pseudo et de l'img dans firebase
+        () => {
+          this.router.navigate(['/lobby']);
+          this.messageService.showSuccess('Update success baby ' + pseudo, 'Update');
+        },
+        (error) => {
+          this.router.navigate(['/lobby']);
+          this.messageService.showSuccess('Welcome ' + pseudo + '; error name or photo', 'NEW PLAYER');
+        });
     }
   }
 
