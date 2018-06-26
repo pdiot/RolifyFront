@@ -14,48 +14,21 @@
         <label for="nom">Nom</label>
         <input type="text" id="nom" class="form-control" formControlName="nom">
       </div>
-      <!-- <div class="form-group">
-          <label for="url">URL</label>
-          <input type="text"
-                 id="url"
-                 class="form-control"
-                 formControlName="url">
-        </div> -->
-
-      <!-- <input type="file" (change)="onFileChanged($event)" #fileInput>
-      <button (click)="fileInput.click()">Select File</button>
-!-->
 
       <div *ngIf="currentUpload">
-          <div class="progress">
-            <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-          </div>
-          Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+        <div class="progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
         </div>
-        
-            <label>
-               <input type="file" (change)="onFileChanged($event)"  class="form-control" formControlName="url">
-            </label>
-        
-            <!-- <button
-                    [disabled]="!selectedFiles"
-                    (click)="uploadSingle()">
-        
-              Upload Single
-            </button>
-        
-            <label>
-               <input type="file" (change)="detectFiles($event)" multiple>
-            </label> -->
-        
-              <!-- <button
-                      [disabled]="!selectedFiles"
-                      (click)="uploadMulti()">
-        
-                Upload Multiple
-              </button> -->
+        <!-- Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete -->
+      </div>
 
-              <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid">Créer mon compte</button>
+      <div class="upload-btn-wrapper">
+        <button class="btn">Upload a file</button>
+        <input type="file" (change)="onFileChanged($event)" name="myfile" class="form-control" formControlName="url" />
+      </div>
+      <div>
+        <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid">Créer mon compte</button>
+      </div>
 
     </form>
     <p class="text-danger">{{ errorMessage }}</p>
