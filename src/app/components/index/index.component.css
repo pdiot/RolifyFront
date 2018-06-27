@@ -1,4 +1,12 @@
 /* General, Body */
+body, * {
+  background-color: #18191C;
+  color: white;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+
+}
+
 
 .center-img {
   display: block;

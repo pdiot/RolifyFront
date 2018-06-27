@@ -11,10 +11,8 @@
 <!-- ___________________formulaire EDIT ______________________________ -->
 <!--_______________________________________________________________________________-->
 <!-- DIALOG -->
-<p-dialog header="Identifients" [(visible)]="editDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
-  <div class="ui-g ui-fluid">
+<p-dialog header="Identifients" [(visible)]="editDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
 
-<app-edit-user currentUser=currentUser ></app-edit-user>
+<app-edit-user (refresh)=refresh($event)></app-edit-user>
 
-   </div>
 </p-dialog>

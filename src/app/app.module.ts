@@ -6,11 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { SigninComponent } from './auth/signin/signin.component';
 import { AuthService } from './services/auth.service';
-import { LobbyComponent } from './lobby/lobby.component';
-import { IndexComponent } from './index/index.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/primeng';
@@ -19,7 +15,11 @@ import {GrowlModule, } from 'primeng/growl';
 import { MessageService } from './services/message.service';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {TableModule} from 'primeng/table';
-import { EditUserComponent } from './edit-user/edit-user.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { SigninComponent } from './components/auth/signin/signin.component';
+import { LobbyComponent } from './components/lobby/lobby.component';
+import { IndexComponent } from './components/index/index.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },

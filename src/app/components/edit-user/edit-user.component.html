@@ -1,0 +1,157 @@
+<div *ngIf="!isReAuth" class="container">
+
+
+  <!-- <div class="ui-g-12"> -->
+  <ngb-tabset #t="ngbTabset" type="pills" justify="center">
+    <!-- _________________ Pseudo IMG _____________________________ -->
+    <ngb-tab id="DataTab">
+      <ng-template ngbTabTitle>
+        <b>Data</b>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <form [formGroup]="modifPsImgForm" (ngSubmit)="onSubmitmodifPsImg()">
+          <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" id="pseudo" class="form-control" formControlName="pseudo">
+          </div>
+          <div *ngIf="!modifPsImgForm.invalid && newUrl">
+            <div class="progress">
+              <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+            </div>
+          </div>
+
+          <div class="upload-btn-wrapper">
+            <button *ngIf="!newUrl" class="btn btnUpl">Upload a file</button>
+            <button *ngIf="newUrl" class="btn btnUrl">{{newUrl}}</button>
+            <input type="file" (change)="onFileChanged($event)" name="myfile" formControlName="newUrl" />
+          </div>
+
+          <button class="btn btn-primary" type="submit" [disabled]="modifPsImgForm.invalid">Enregistrer</button>
+        </form>
+        <p class="text-danger">{{ errorMessagePsImg }}</p>
+      </ng-template>
+    </ngb-tab>
+
+    <!-- _________________ Password _____________________________ -->
+    <ngb-tab id="PasswordTab">
+      <ng-template ngbTabTitle>
+        <b>Password</b>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <form [formGroup]="pswForm" (ngSubmit)="onSubmitmodifPsw()">
+          <div class="form-group">
+            <label for="psw1">New Password</label>
+            <input type="password" id="psw1" class="form-control" formControlName="psw1">
+            <label for="psw2">Confirm Password</label>
+            <input type="password" id="psw2" class="form-control" formControlName="psw2">
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="pswForm.invalid">Enregistrer</button>
+        </form>
+        <p class="text-danger">{{ errorMessagePsw }}</p>
+
+      </ng-template>
+    </ngb-tab>
+
+    <!-- _________________ Email _____________________________ -->
+    <ngb-tab id="EmailTab">
+      <ng-template ngbTabTitle>
+        <b>Email</b>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <form [formGroup]="emailForm" (ngSubmit)="onSubmitmodifEmail()">
+          <div class="form-group">
+            <label for="pseudo">New Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email">
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="emailForm.invalid">Enregistrer</button>
+        </form>
+        <p class="text-danger">{{ errorMessageEmail }}</p>
+
+      </ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>
+
+
+
+  <!-- <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <form [formGroup]="emailForm" (ngSubmit)="onSubmitmodifEmail()">
+        <div class="form-group">
+          <label for="pseudo">New Email</label>
+          <input type="email" id="email" class="form-control" formControlName="email">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="emailForm.invalid">Enregistrer</button>
+      </form>
+      <p class="text-danger">{{ errorMessageEmail }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <form [formGroup]="pswForm" (ngSubmit)="onSubmitmodifPsw()">
+        <div class="form-group">
+          <label for="psw1">New Password</label>
+          <input type="password" id="psw1" class="form-control" formControlName="psw1">
+          <label for="psw2">Confirm Password</label>
+          <input type="password" id="psw2" class="form-control" formControlName="psw2">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="pswForm.invalid">Enregistrer</button>
+      </form>
+      <p class="text-danger">{{ errorMessagePsw }}</p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <form [formGroup]="modifPsImgForm" (ngSubmit)="onSubmitmodifPsImg()">
+        <div class="form-group">
+          <label for="pseudo">Pseudo</label>
+          <input type="text" id="pseudo" class="form-control" formControlName="pseudo">
+        </div>
+        <div *ngIf="!modifPsImgForm.invalid && newUrl">
+          <div class="progress">
+            <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+          </div>
+        </div>
+
+        <div class="upload-btn-wrapper">
+          <button *ngIf="!newUrl" class="btn btnUpl">Upload a file</button>
+          <button *ngIf="newUrl" class="btn btnUrl">{{newUrl}}</button>
+          <input type="file" (change)="onFileChanged($event)" name="myfile" formControlName="newUrl" />
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="modifPsImgForm.invalid">Enregistrer</button>
+      </form>
+      <p class="text-danger">{{ errorMessagePsImg }}</p>
+    </div>
+  </div> -->
+
+</div>
+
+<!-- ___________________formulaire re authentification______________________________ -->
+<!--_______________________________________________________________________________-->
+<div *ngIf="isReAuth">
+
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+
+      <form [formGroup]="signinForm" (ngSubmit)="onSubmitReAuth()">
+        <div class="form-group">
+          <label for="ActEmail">Adresse mail actuel</label>
+          <input type="email" id="ActEmail" class="form-control" formControlName="ActEmail">
+        </div>
+        <div class="form-group">
+          <label for="ActPsw">Mot de passe actuel</label>
+          <input type="password" id="ActPsw" class="form-control" formControlName="ActPsw">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="signinForm.invalid">Valider</button>
+      </form>
+      <p class="text-danger">{{ errorMessage }}</p>
+    </div>
+  </div>
+
+
+</div>
