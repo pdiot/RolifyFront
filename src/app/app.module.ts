@@ -15,9 +15,11 @@ import { IndexComponent } from './index/index.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/primeng';
 import { MessageComponent } from './message/message.component';
-import {GrowlModule} from 'primeng/growl';
+import {GrowlModule, } from 'primeng/growl';
 import { MessageService } from './services/message.service';
-
+import {TabMenuModule} from 'primeng/tabmenu';
+import {TableModule} from 'primeng/table';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -37,12 +39,15 @@ const appRoutes: Routes = [
     LobbyComponent,
     IndexComponent,
     MessageComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    TableModule,
+    TabMenuModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
