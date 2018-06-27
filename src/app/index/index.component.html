@@ -1,21 +1,29 @@
 <!-- <div *ngIf="isReady" class="container"> -->
 
-<nav class="navbar navbar-default">
     <div class="container-fluid">
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <button (click)="gotoSignup()">Créer un compte</button>
-        </li>
-        <li>
-          <button (click)="gotoSignin()">Connexion</button>
+      <div class="jumbotron">
+        <img src="../../assets/logo/rolify_logo@2x.png" class="center-img"/>
+        <img src="../../assets/elements/separator.png" class="center-img" id="separator"/>
+        <p class="lead">Online Role Playing Game Interface</p>
+        <hr class="my-4">
+        <h2 class="center-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        <p class="center-txt text">Duis elementum sapien sit amet tellus aliquam, dignissim venenatis lacus consectetur.
+           Etiam vitae convallis nisl. Duis sed est quis enim luctus rhoncus.
+           Morbi porta vestibulum mauris non pretium. Donec dictum, diam vel maximus placerat.
+          Etiam vitae convallis nisl. Duis sed est quis enim luctus rhoncus.
+          Morbi porta vestibulum mauris non pretium. Donec dictum, diam vel maximus placerat,
+           lectus ante consequat quam !</p>
 
-        </li>  
-        <li>
-                
-        </li>
-      </ul>
+
+        <div class="row">
+          <div class="col-12 text-center">
+            <a class="btn btn-primary btn-lg" (click)="gotoSignin()" role="button" id="signup">Se connecter</a>
+            <a class="btn btn-primary btn-lg" (click)="gotoSignup()" role="button" id="signin">S'inscrire</a>
+          </div>
+        </div>
+
+
+      </div>
     </div>
-  </nav>
 
-<!-- </div> -->
+

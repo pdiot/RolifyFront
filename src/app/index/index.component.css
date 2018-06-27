@@ -1,0 +1,76 @@
+/* General, Body */
+
+.center-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* Center texte */
+
+.center-txt {
+  text-align: center;
+}
+
+/* Sous titre */
+
+.lead {
+  letter-spacing: 5px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 100;
+}
+
+/* Titrage */
+
+h2 {
+  letter-spacing: 2px;
+  font-size: 26px;
+  text-align: center;
+  font-weight:300;
+}
+
+/* Text descriptif */
+
+.text { font-weight:100;}
+
+/* boutons */
+
+.btn {
+  margin: auto;
+  width: 50%;
+  display:inline-block;
+}
+
+#signin {
+  background-color: white;
+  color: #18191C;
+  border-radius: 30px;
+  font-weight:300;
+  font-size: 18px;
+  width: 150px;
+  margin-top: 50px;}
+
+#signup {
+  background-color: #E2C447;
+  color: #18191C;
+  border-radius: 30px;
+  font-weight:300;
+  font-size: 18px;
+  margin-right: 35px;
+  margin-top: 50px;
+  width: 150px;}
+
+/* separateur titre */
+
+#separator {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* jumbotron */
+
+.jumbotron {
+  background-color: #18191C;
+}
