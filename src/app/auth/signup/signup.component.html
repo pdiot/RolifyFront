@@ -24,7 +24,7 @@
 
       <div  class="upload-btn-wrapper">
         <button *ngIf="!url" class="btn btnUpl">Upload a file</button>
-        <button *ngIf="url" class="btn btnUrl">{{url.slice(12)}}</button>
+        <button *ngIf="url" class="btn btnUrl">{{url}}</button>
         <input type="file" (change)="onFileChanged($event)" name="myfile" class="form-control" formControlName="url" />
       </div>
 

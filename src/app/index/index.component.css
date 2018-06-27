@@ -41,6 +41,9 @@ h2 {
   margin: auto;
   width: 50%;
   display:inline-block;
+  outline: 0px;
+  border-style: none;
+
 }
 
 #signin {
@@ -50,7 +53,10 @@ h2 {
   font-weight:300;
   font-size: 18px;
   width: 150px;
-  margin-top: 50px;}
+  margin-top: 50px;
+
+  outline: 0px;
+}
 
 #signup {
   background-color: #E2C447;
