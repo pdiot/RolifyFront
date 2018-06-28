@@ -1,6 +1,7 @@
 import { Utilisateur } from './utilisateur';
 
 export class Chat {
+    id: number;
     source: Utilisateur;
     dateTime: Date;
     body: string;

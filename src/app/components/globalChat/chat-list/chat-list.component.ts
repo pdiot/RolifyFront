@@ -24,18 +24,31 @@ export class ChatListComponent implements OnInit {
     private messageService: MessageService) { }
 
   ngOnInit() {
+    this.chatService.getChats()
+      .subscribe(tab => {
+        this.chats = tab.slice(tab.length - 5, tab.length);
+        setInterval(() => this.chatService.getChats()
+          .subscribe(tabRefr => {
+            let i = tabRefr.findIndex((chat) => chat.id === this.chats[this.chats.length - 1].id);
+            console.log('i' + i);
+            for (i + 1; i < tabRefr.length - 1; i++) {
+              this.chats.push(tabRefr[i + 1]);
+            }
+          })
+          , 5000);
+      });
 
   }
 
 
 
-
   public sendMessage(): void {
     if (this.content !== '') {
+      console.log('this.authService.currentUser.uid ' + this.authService.currentUser.uid);
       this.utilisateurService.getUtilisateur(this.authService.currentUser.uid).subscribe(util => {
         console.log('chat list sendMessage ' + util.pseudo);
         // enregistrement dans la bdd
-      this.chatService.add(new Chat(this.content, new Utilisateur(util.id, util.pseudo, util.urlAvatar))).subscribe(result => {
+        this.chatService.add(new Chat(this.content, util)).subscribe(result => {
           this.messageService.showSuccess('add chat ' + util.pseudo, 'BDD');
           this.content = '';
         });

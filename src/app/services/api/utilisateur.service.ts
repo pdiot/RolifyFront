@@ -50,6 +50,15 @@ export class UtilisateurService {
 
   getUtilisateur(id: string): Observable<Utilisateur> {
     // this.log(`HeroService: fetched hero id=${id}`);
+    return this.http.get<Utilisateur>(this.baseUrl + '/common/' + id)
+      .pipe(
+        tap(_ => this.log(`fetched Utilisateur id=${id}`, 'Fetch Element')),
+        catchError(this.handleError<Utilisateur>(`getUtilisateur id=${id}`))
+      );
+  }
+
+  getUtilisateurComplet(id: string): Observable<Utilisateur> {
+    // this.log(`HeroService: fetched hero id=${id}`);
     return this.http.get<Utilisateur>(this.baseUrl + '/' + id)
       .pipe(
         tap(_ => this.log(`fetched Utilisateur id=${id}`, 'Fetch Element')),
