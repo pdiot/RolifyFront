@@ -88,7 +88,7 @@ h2 {
 #knight_red {
   width: 130px;
   height: 130px;
-  background-image: url("../../assets/animation/knight_red.gif");
+  background-image: url("../../../assets/animation/knight_red.gif");
   background-size: 130px 130px;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -102,7 +102,7 @@ h2 {
 #knight_green {
   width: 130px;
   height: 130px;
-  background-image: url("../../assets/animation/knight_green.gif");
+  background-image: url("../../../assets/animation/knight_green.gif");
   background-size: 130px 130px;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -116,7 +116,7 @@ h2 {
 #knight_yellow {
   width: 130px;
   height: 130px;
-  background-image: url("../../assets/animation/knight_yellow.gif");
+  background-image: url("../../../assets/animation/knight_yellow.gif");
   background-size: 130px 130px;
   background-repeat: no-repeat;
   background-color: transparent;
