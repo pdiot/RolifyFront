@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { Upload } from '../../classes/upload';
-import { UploadService } from '../../services/upload.service';
-import { MessageService } from '../../services/message.service';
+import { Upload } from '../../../models/upload';
+import { AuthService } from '../../../services/auth.service';
+import { UploadService } from '../../../services/upload.service';
+import { MessageService } from '../../../services/message.service';
+
 
 
 @Component({
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   errorMessage: string;
   currentUpload: Upload = null;
-url: string = null;
+  url: string = null;
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -41,8 +42,9 @@ url: string = null;
   onFileChanged(event) {  // recup de l'img et transformtion en Upload
     const file = event.target.files[0];
     this.currentUpload = new Upload(file);
-    this.url = this.signupForm.get('url').value;
-    console.log(' url ' +  this.url);
+    // this.url = this.signupForm.get('url').value;
+    // console.log(' url ' +  this.url);
+    this.url = file.name;
   }
 
   onSubmit() {
@@ -57,30 +59,25 @@ url: string = null;
         // recup du user
         this.authService.getCurrentUser().then(
           (user) => {
-            user.getIdToken().then(
-              (alienKey) => {  // Recup de l'id
-                this.uploadService.pushUpload(this.currentUpload, alienKey).then( // upload img dans firebase et recup de l' url
-                  (upload) => {
-                    this.authService.updateNamePhoto(pseudo, upload.url).then( // enregistrement du pseudo et de l'img dans firebase
-                      () => {
-                        this.router.navigate(['/lobby']);
-                        this.messageService.showSuccess('Welcome ' + pseudo, 'NEW PLAYER');
-                      },
-                      (error) => {
-                        this.router.navigate(['/lobby']);
-                        this.messageService.showSuccess('Welcome ' + pseudo + '; error name or photo', 'NEW PLAYER');
-                      });
+            this.uploadService.pushUpload(this.currentUpload, user.uid).then( // upload img dans firebase et recup de l' url
+              (upload) => {
+                this.authService.updateNamePhoto(pseudo, upload.url).then( // enregistrement du pseudo et de l'img dans firebase
+                  () => {
+                    this.router.navigate(['/lobby']);
+                    this.messageService.showSuccess('Welcome ' + pseudo, 'NEW PLAYER');
                   },
                   (error) => {
-                    console.log(error);
-                  }
-                );
+                    this.router.navigate(['/lobby']);
+                    this.messageService.showSuccess('Welcome ' + pseudo + '; error name or photo: ' + error, 'NEW PLAYER');
+                  });
               },
               (error) => {
+                this.errorMessage = error;
                 console.log(error);
               });
           },
           (error) => {
+            this.errorMessage = error;
             console.log(error);
           });
       },

@@ -1,0 +1,9 @@
+<div class="chatlist">
+  <ul class="list-group">
+    <app-chat-item *ngFor="let msg of chats" [chat]="msg"></app-chat-item>
+  </ul>
+  <div class="chatcontrol"> 
+      <input type="text" class="form-control chatinput" [(ngModel)]="content"/>
+      <button class="btn btn-success sendbtn" (click)="sendMessage()">Send</button>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="row">
+
+  <div  class="col-6 chatform">
+    <app-chat-list></app-chat-list>
+  </div>
+
+  <div class="col-6">
+    <div *ngIf=currentUser>
+      <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
+      <p>{{ currentUser.email }} </p>
+      <img *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture" width="200px">
+    </div>
+
+    <button (click)="onSignOut()" style="cursor:pointer">Déconnexion</button>
+
+
+    <button (click)="onOpenEditMod()" style="cursor:pointer">Edit</button>
+    <!-- ___________________formulaire EDIT ______________________________ -->
+    <!--_______________________________________________________________________________-->
+    <!-- DIALOG -->
+    <p-dialog header="Identifients" [(visible)]="editDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
+
+      <app-edit-user (refresh)=refresh($event)></app-edit-user>
+
+    </p-dialog>
+
+  </div>
+</div>

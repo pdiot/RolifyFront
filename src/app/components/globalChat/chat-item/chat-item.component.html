@@ -1,0 +1,12 @@
+<li class="list-group-item">
+  <img [src]="chat.source.avatarUrl" class="avatar"/>
+  <div class="message">
+      {{chat.source.pseudo}}
+    </div>
+  <div class="message">
+    {{chat.content}}
+  </div>
+  <div class="timeform">
+    <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="timestamp">{{chat.timestamp | date : 'dd/MM/yyyy' }}</span>
+  </div>
+</li>
