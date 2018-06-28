@@ -1,6 +1,12 @@
+/* overwrite du BODY */
+::ng-deep body{
+  background-color: #18191C;
+  color: white;
+  font-weight: 300;
+
+}
+
 /* General, Body */
-
-
 
 .center-img {
   display: block;
@@ -100,7 +106,7 @@ h2 {
   background-color: transparent;
   position: absolute;
   z-index: 1;
-  animation: knightred 3s infinite;  /*  steps(2)  */
+  animation: knightred 5s infinite;  /*  steps(2)  */
   animation-direction: alternate;
   animation-timing-function: linear;
 }
@@ -148,7 +154,7 @@ h2 {
 
 @keyframes knightred {
   from {left: 0px;}
-  to {left: 800px; }  /*   transform: scaleX(-1); */
+  to {left: 600px; }  /*   transform: scaleX(-1); */
 }
 
 @keyframes knightgreen {

@@ -1,12 +1,15 @@
+
+/* overwrite du BODY */
+::ng-deep body{
+  background-color: #232528;
+}
+
 /* unvisited link */
 a:link {
   color: #E2C447;
   text-decoration: none;
 }
 
-::ng-deep body{
-  background-color: #232528;
-}
 /* visited link */
 a:visited {
   color: #E2C447;
@@ -36,7 +39,7 @@ a:active {
   background-color: #131516;
   padding-top: 20px;
   border-radius: 10px;
-  box-shadow: -5px 5px 5px black;
+  box-shadow: -3px 3px 5px black;
   height: 460px;
 }
 

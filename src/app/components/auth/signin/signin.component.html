@@ -12,7 +12,7 @@
                  id="email"
                  class="form-control"
                  formControlName="email">
-          <small id="loginHelp" class="form-text text-muted"><a href="emailReset()">J'ai encore oublié mon mot de passe :(</a></small>
+          <small id="loginHelp" class="form-text text-muted">Je ne suis pas inscris ! <a href="#">je veux créer un compte.</a></small>
         </div>
         <div class="form-group">
           <label class="form_title" for="password">PASSWORD</label>
@@ -20,7 +20,7 @@
                  id="password"
                  class="form-control"
                  formControlName="password">
-          <small id="subscribeHelp" class="form-text text-muted">Je ne suis pas inscris ! <a href="#">je veux créer un compte.</a></small>
+          <small id="subscribeHelp" class="form-text text-muted"><a href="emailReset()">J'ai encore oublié mon mot de passe :(</a></small>
         </div>
         <button class="btn btn-primary" type="submit"  id="btn_valid" [disabled]="signinForm.invalid">Se connecter</button>
       </form>
