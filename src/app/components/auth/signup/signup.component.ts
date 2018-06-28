@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Upload } from '../../../classes/upload';
+import { Upload } from '../../../models/upload';
 import { AuthService } from '../../../services/auth.service';
 import { UploadService } from '../../../services/upload.service';
 import { MessageService } from '../../../services/message.service';

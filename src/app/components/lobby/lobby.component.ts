@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Upload } from '../../classes/upload';
+import { Upload } from '../../models/upload';
 import { UploadService } from '../../services/upload.service';
 import { MessageService } from '../../services/message.service';
 import { AuthService } from '../../services/auth.service';
@@ -41,7 +41,7 @@ export class LobbyComponent implements OnInit {
     this.authService.getCurrentUser().then(    // useless
       (user) => {
         this.currentUser = user;
-        console.log(user.uid);
+        console.log(user);
       },
       (error) => {
         this.currentUser = null;

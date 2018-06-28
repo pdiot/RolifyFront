@@ -20,6 +20,8 @@ import { SigninComponent } from './components/auth/signin/signin.component';
 import { LobbyComponent } from './components/lobby/lobby.component';
 import { IndexComponent } from './components/index/index.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { ChatListComponent } from './components/globalChat/chat-list/chat-list.component';
+import { ChatItemComponent } from './components/globalChat/chat-item/chat-item.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -40,6 +42,8 @@ const appRoutes: Routes = [
     IndexComponent,
     MessageComponent,
     EditUserComponent,
+    ChatListComponent,
+    ChatItemComponent,
   ],
   imports: [
     BrowserModule,
