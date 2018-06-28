@@ -1,13 +1,14 @@
-import { User } from './user';
+import { Utilisateur } from './utilisateur';
 
 export class Chat {
-    content: string;
-    timestamp: Date;
-    source: User;
+    source: Utilisateur;
+    dateTime: Date;
+    body: string;
 
-    constructor(content: string, source: User) {
-        this.content = content;
-        this.timestamp = new Date();
+
+
+    constructor(body: string, source: Utilisateur) {
+        this.body = body;
         this.source = source;
     }
 

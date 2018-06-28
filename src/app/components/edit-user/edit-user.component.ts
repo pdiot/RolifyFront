@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'firebase';
 import { Upload } from '../../models/upload';
 import { UploadService } from '../../services/upload.service';
 import { MessageService } from '../../services/message.service';
 import { AuthService } from '../../services/auth.service';
+import { UtilisateurService } from '../../services/api/utilisateur.service';
+import { User } from 'firebase';
+import { Utilisateur } from '../../models/utilisateur';
 
 
 @Component({
@@ -39,11 +41,12 @@ export class EditUserComponent implements OnInit {
   constructor(private uploadService: UploadService,
     private formBuilder: FormBuilder, private router: Router,
     private messageService: MessageService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private utilisateurService: UtilisateurService) { }
 
   ngOnInit() {
 
-    this.authService.getCurrentUser().then(    // useless
+    this.authService.getCurrentUser().then(    //
       (user) => {
         this.currentUser = user;
         this.modifPsImgForm.get('pseudo').setValue(user.displayName);
@@ -75,8 +78,8 @@ export class EditUserComponent implements OnInit {
   // ---------Psw
   initPswForm() {
     this.pswForm = this.formBuilder.group({
-      psw1: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]],
-      psw2: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]],
+      psw1: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,30}/)]],
+      psw2: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,30}/)]],
 
     });
   }
@@ -95,7 +98,7 @@ export class EditUserComponent implements OnInit {
   initFormReAuth() {
     this.signinForm = this.formBuilder.group({
       ActEmail: ['', [Validators.required, Validators.email]],
-      ActPsw: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
+      ActPsw: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,50}/)]]
     });
   }
 
@@ -166,14 +169,23 @@ export class EditUserComponent implements OnInit {
         (upload) => {
           this.authService.updateNamePhoto(pseudo, upload.url).then( // enregistrement du pseudo et de l'img dans firebase
             () => {
-              this.refresh.emit(false);
-              this.errorMessagePsImg = '';
-              this.messageService.showSuccess('Update success baby ' + pseudo, 'Update');
+              // update dans la bdd
+              this.utilisateurService.getUtilisateur(this.currentUser.uid).subscribe(util => {
+                console.log('updateInfo getUtil ' + util.id);
+                util.pseudo = pseudo;
+                util.urlAvatar = this.currentUser.photoURL;
+                this.utilisateurService.updateInfo(util).subscribe(result => {
+                  this.messageService.showSuccess('Update ' + result.pseudo, 'BDD');
+                  this.errorMessagePsImg = '';
+                  this.refresh.emit(false);
+                });
+              });
             },
             (error) => {
               this.errorMessagePsImg = error.message;
               console.log(error);
             });
+
         },
         (error) => {
           this.errorMessagePsImg = error.message;
@@ -184,11 +196,20 @@ export class EditUserComponent implements OnInit {
     } else { // pas de changement d'avatar
       this.authService.updateNamePhoto(pseudo, this.currentUser.photoURL).then( // enregistrement du pseudo et de l'img dans firebase
         () => {
-          this.refresh.emit(false);
-          this.messageService.showSuccess('Update success baby ' + pseudo, 'Update');
-        },
-        (error) => {
-          this.errorMessagePsImg = error.message;
+          // update dans la bdd
+          this.utilisateurService.getUtilisateur(this.currentUser.uid).subscribe(util => {
+            console.log('updateInfo getUtil ' + util.id);
+            util.pseudo = pseudo;
+            util.urlAvatar = this.currentUser.photoURL;
+            this.utilisateurService.updateInfo(util).subscribe(result => {
+              this.messageService.showSuccess('Update ' + result.pseudo, 'BDD');
+              this.errorMessagePsImg = '';
+              this.refresh.emit(false);
+            });
+          },
+            (error) => {
+              this.errorMessagePsImg = error.message;
+            });
         });
     }
   }
