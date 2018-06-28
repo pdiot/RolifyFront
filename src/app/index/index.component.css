@@ -80,3 +80,75 @@ h2 {
 .jumbotron {
   background-color: #18191C;
 }
+
+/* ----------- animation des chevaliers ----------- */
+
+#knight_red {
+  width: 130px;
+  height: 130px;
+  background-image: url("../../assets/animation/knight_red.gif");
+  background-size: 130px 130px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  position: absolute;
+  z-index: 1;
+  animation: knightred 3s infinite;  /*  steps(2)  */
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+#knight_green {
+  width: 130px;
+  height: 130px;
+  background-image: url("../../assets/animation/knight_green.gif");
+  background-size: 130px 130px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  position: absolute;
+  z-index: 1;
+  animation: knightgreen 5s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease;
+}
+
+#knight_yellow {
+  width: 130px;
+  height: 130px;
+  background-image: url("../../assets/animation/knight_yellow.gif");
+  background-size: 130px 130px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  position: absolute;
+  z-index: 1;
+  animation: knightyellow 3s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in;
+}
+
+/* #div_knight {
+  height: 100px;
+  margin-top: 30px;
+  border-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #E2C447;
+} */
+
+
+
+/* #div4 {animation-timing-function: ease-out;}
+#div5 {animation-timing-function: ease-in-out;} */
+
+@keyframes knightred {
+  from {left: 0px;}
+  to {left: 800px; }  /*   transform: scaleX(-1); */
+}
+
+@keyframes knightgreen {
+  from {left: 800px;}
+  to {left: 0px;}
+}
+
+@keyframes knightyellow {
+  from {left: 400px;}
+  to {left: 100px;}
+}
