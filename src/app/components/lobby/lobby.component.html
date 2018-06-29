@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row lobby">
 
   <div class="col-6 chatform">
-      <app-chat-list [utilisateur]="currentUser"></app-chat-list>
+    <app-chat-list [utilisateur]="currentUser"></app-chat-list>
 
   </div>
 
@@ -9,17 +9,22 @@
     <div *ngIf=currentUser>
       <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
       <p>{{ currentUser.email }} </p>
-      <img *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture" width="200px">
+      <div>
+        <img class="avatar" *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture" width="200px">
+      </div>
     </div>
 
-    <button (click)="onSignOut()" style="cursor:pointer">Déconnexion</button>
+    <button  (click)="onSignOut()" class="btn option"><i>
+        <img src="../../../assets/icons/exit.png">
+      </i></button>
+    <button  (click)="onOpenEditMod()" class="btn option"><i>
+        <img src="../../../assets/icons/gear.png">
+      </i></button>
 
-
-    <button (click)="onOpenEditMod()" style="cursor:pointer">Edit</button>
     <!-- ___________________formulaire EDIT ______________________________ -->
     <!--_______________________________________________________________________________-->
     <!-- DIALOG -->
-    <p-dialog header="Identifients" [(visible)]="editDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
+    <p-dialog header="Edit" [(visible)]="editDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
 
       <app-edit-user (refresh)=refresh($event)></app-edit-user>
 

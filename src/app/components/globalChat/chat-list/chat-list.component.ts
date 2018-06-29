@@ -13,6 +13,9 @@ import { UtilisateurService } from '../../../services/api/utilisateur.service';
 })
 export class ChatListComponent implements OnInit {
 
+
+  scrollCallback;
+
   @Input('utilisateur')
   public utilisateur: Utilisateur;
   public chats: Chat[] = [];
@@ -21,12 +24,18 @@ export class ChatListComponent implements OnInit {
   constructor(private authService: AuthService,
     private utilisateurService: UtilisateurService,
     private chatService: ChatGlobalService,
-    private messageService: MessageService) { }
+    private messageService: MessageService) {
+
+  }
+
+
+
 
   ngOnInit() {
     this.chatService.getChats()
       .subscribe(tab => {
-        this.chats = tab.slice(tab.length - 5, tab.length);
+        // this.chats = tab.slice(tab.length - 5, tab.length);
+        this.chats = tab;
         setInterval(() => this.chatService.getChats()
           .subscribe(tabRefr => {
             let i = tabRefr.findIndex((chat) => chat.id === this.chats[this.chats.length - 1].id);

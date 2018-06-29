@@ -1,0 +1,11 @@
+.lobby {
+    height: 50em;   /* doit etre fixe */
+}
+
+.avatar {
+    border-radius: 100%;
+  }
+
+  .option {
+      background-color: transparent;
+  }

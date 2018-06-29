@@ -1,4 +1,33 @@
+.list-group-item {
+    border-radius: 10px;
+}
+
+
 .avatar {
-    width: 50px;
+    max-width: 100%;
     border-radius: 100%;
+}
+
+.imgPseudo {
+    text-align: center;
+}
+
+.time {
+    justify-content: flex-end;
+ margin-right: 0.3em;
+}
+
+.timestamp {
+    margin-left: 0.3em;
+}
+
+.message {
+margin-top: 2em;
+width: 100%;
+
+}
+
+p {
+    width: 100%;
+    overflow-wrap: break-word;
 }
