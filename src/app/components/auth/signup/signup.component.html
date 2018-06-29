@@ -1,18 +1,37 @@
+
+<section class="items-bg"></section>
+
 <div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
-    <h2>Créer un compte</h2>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="email">Adresse mail</label>
+  <div class="col-3"></div>
+
+    <div class="col-6">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" id="form">
+
+      <h5 id="titre">Pour rejoindre la communauté,</h5>
+      <h5 id="sous_titre">Merci de <span class="yellow">créer un compte.</span></h5>
+
+      <img src="../../../../assets/elements/avatar_knight.png" id="knight_avatar">
+
+        <div class="form-group">
+          <label for="nom">NOM</label>
+          <input type="text" id="nom" class="form-control" formControlName="nom">
+        </div>
+
+        <div class="form-group">
+        <label for="email">ADRESSE MAIL</label>
         <input type="text" id="email" class="form-control" formControlName="email">
       </div>
+
       <div class="form-group">
-        <label for="password">Mot de passe</label>
+        <label for="password">MOT DE PASSE</label>
         <input type="password" id="password" class="form-control" formControlName="password">
       </div>
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input type="text" id="nom" class="form-control" formControlName="nom">
+
+
+      <div class="upload-btn-wrapper">
+        <button *ngIf="!url" class="btn btnUpl">Choisir un avatar</button>
+        <button *ngIf="url" class="btn btnUrl">{{url}}</button>
+        <input type="file" (change)="onFileChanged($event)" name="myfile" class="form-control" formControlName="url" />
       </div>
 
       <div *ngIf="!signupForm.invalid">
@@ -22,17 +41,17 @@
         <!-- Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete -->
       </div>
 
-      <div  class="upload-btn-wrapper">
-        <button *ngIf="!url" class="btn btnUpl">Upload a file</button>
-        <button *ngIf="url" class="btn btnUrl">{{url}}</button>
-        <input type="file" (change)="onFileChanged($event)" name="myfile" class="form-control" formControlName="url" />
-      </div>
+
 
       <div>
-        <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid">Créer mon compte</button>
+        <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid">Valider</button>
       </div>
 
     </form>
+    </div>
+
+    <div class="col-3"></div>
+
     <p class="text-danger">{{ errorMessage }}</p>
   </div>
-</div>
+

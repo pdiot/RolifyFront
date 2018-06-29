@@ -1,34 +1,75 @@
+/* overwrite du BODY */
+::ng-deep body{
+  background-color: #232528;
+}
+
+#form {
+  background-color: #131516;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: -3px 3px 5px black;
+}
+
+.yellow {
+  color: #E2C447;
+}
+
 .btn {
     cursor: pointer;
+}
+
+#knight_avatar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 25%;
+}
+
+#titre {font-weight: 500; font-size: 26px; color: white; text-align: center;}
+#sous_titre {font-weight: 500; font-size: 26px; margin-bottom: 21px; color: white; text-align: center;}
+
+label {
+  margin-bottom: 1px;
+  color: white;
+  font-size: 14px;
+  font-weight:100;
 }
 
 .upload-btn-wrapper {
     position: relative;
     overflow: hidden;
     display: inline-block;
+    width: 100%;
   }
-  
+
   .upload-btn-wrapper .btnUpl {
-    border: 2px solid gray;
-    color: gray;
     background-color: white;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: bold;
+    color: #18191C;
+    border-radius: 30px;
+    font-weight:300;
+    font-size: 18px;
+    margin-right: 35px;
+    margin-top: 27px;
+    outline: 0px;
+    border-style: none;
+    width: 100%;
   }
-  
+
+
+
   .upload-btn-wrapper .btnUrl  {
-      max-width: 20em;
-    border: 2px solid black;
-    color: rgb(29, 29, 7);
-    background-color: white;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: normal;
+    background-color: #E2C447;
+    color: #18191C;
+    border-radius: 30px;
+    font-weight:300;
+    font-size: 18px;
+    margin-right: 35px;
+    margin-top: 27px;
+    width: 100%;
   }
-  
+
   .upload-btn-wrapper input[type=file] {
     font-size: 100px;
     position: absolute;
@@ -37,4 +78,54 @@
     opacity: 0;
   }
 
- 
+/* background items animation */
+
+.items-bg {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background-image: url("../../../../assets/animation/items.png");
+  animation: items 40s ease-in-out infinite;
+}
+
+.btn-primary {
+  background-color: #E2C447;
+  color: #18191C;
+  border-radius: 30px;
+  font-weight:300;
+  font-size: 18px;
+  margin-right: 35px;
+  margin-top: 10px;
+  outline: 0px;
+  border-style: none;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: white;
+}
+
+@keyframes items {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+
+@media (max-width: 768px) {
+  .woocommerce ul.products li.product,
+  .woocommerce-page ul.products li.product,
+  .woocommerce-page[class*=columns-] ul.products li.product,
+  .woocommerce[class*=columns-] ul.products li.product {
+    width: 100%;
+    float: left;
+    clear: both;
+    margin: 0 7em;
+  }
+
+}

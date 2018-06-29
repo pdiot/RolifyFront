@@ -1,10 +1,12 @@
 
-  <div class="row">
+<section class="items-bg"></section>
+
+<div class="row">
 
     <div class="col-3"></div>
     <div class="col-6" id="form">
       <h5 id="titre">Bon retour parmi nous !</h5>
-      <h5 id="sous_titre">Merci de vous connecter.</h5>
+      <h5 id="sous_titre">Merci de <span class="yellow">vous connecter.</span></h5>
       <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label class="form_title" for="email">LOGIN</label>

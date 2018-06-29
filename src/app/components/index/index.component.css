@@ -66,11 +66,8 @@ h2 {
 
 
 #signin:hover {
-  background-color: red;
+  background-color: #E2C447;
 }
-
-
-
 
 #signup {
   background-color: #E2C447;
@@ -81,6 +78,10 @@ h2 {
   margin-right: 35px;
   margin-top: 50px;
   width: 150px;}
+
+#signup:hover {
+  background-color: white;
+}
 
 /* separateur titre */
 
