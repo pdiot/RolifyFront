@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -9,25 +9,35 @@ import { AuthService } from '../../services/auth.service';
 })
 export class IndexComponent implements OnInit {
 
-  currentUser: firebase.User;
-  isReady = false;   // pour que la page s'affiche seulement si pas de user
-
-  constructor(private router: Router, private authService: AuthService, ) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
 
-    this.authService.getCurrentUser().then(
-      (user) => {
-        this.currentUser = user; console.log(user);
+    // setTimeout(() => {
+    //   this.gotoLobby();
+    // }, 5000);
+
+
+    this.authService.getCurrentUser().then((user) => {
+      console.log('in index if ' + user);
+      if (user) {
         this.router.navigate(['/lobby']);
-      },
-      (error) => {
-        this.currentUser = null;
-        this.isReady = true;
-      });
+      }
+    });
 
-
+    // // console.log('in index' + this.currentUserService.currentUser.displayName);
+    // if (this.currentUserService.currentUser) {
+    //   console.log('in index' + this.currentUserService.currentUser.displayName);
+    //   this.router.navigate(['/lobby']);
+    // }
   }
+
+  // gotoLobby() {
+  //   if (this.currentUserService.currentUser) {
+  //     console.log('basta moove' + this.currentUserService.currentUser.displayName);
+  //     this.router.navigate(['/lobby']);
+  //   }
+  // }
 
   gotoSignin() {
     this.router.navigate(['/auth/signin']);

@@ -1,52 +1,72 @@
-<div class="row">
-  <div class="col-2">
-    <h1> ROLIFY </h1>
-  </div>
-  <div class="col">
-    <div class="row">
-      <div class="col"><p>DECONNEXION</p></div>
-      <div class="col"><p>LOBBY ROOM</p></div>
-      <div class="col"><p>MON COMPTE</p></div>
+<div class="lobby">
+
+  <div class="row">
+    <div class="col-2">
+      <h1> ROLIFY </h1>
     </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-7">
-    <div class="row">
-      <div class="col-6">
-        <app-sidebar>
-          <div *ngIf=currentUser>
-            <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
-            <p>{{ currentUser.email }} </p>
-            <img *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture" width="200px">
-          </div>
-
-    <button  (click)="onSignOut()" class="btn option"><i>
-        <img src="../../../assets/icons/exit.png">
-      </i></button>
-    <button  (click)="onOpenEditMod()" class="btn option"><i>
-        <img src="../../../assets/icons/gear.png">
-      </i></button>
-
-          <!-- ___________________formulaire EDIT ______________________________ -->
-          <!--_______________________________________________________________________________-->
-          <!-- DIALOG -->
-          <p-dialog header="Identifients" [(visible)]="editDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
-
-            <app-edit-user (refresh)=refresh($event)></app-edit-user>
-
-          </p-dialog>
-        </app-sidebar>
-      </div>
-      <div class="col-6 chatform">
-        <app-chat-list [utilisateur]="currentUser"></app-chat-list>
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <p>DECONNEXION</p>
+        </div>
+        <div class="col">
+          <p>LOBBY ROOM</p>
+        </div>
+        <div class="col">
+          <p>MON COMPTE</p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-5">
-    <app-partie-liste></app-partie-liste>
+  <div class="row">
+    <div class="col-7">
+      <div class="row">
+        <div class="col-6">
+          <app-sidebar>
+            <div *ngIf=currentUser>
+              <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
+              <p>{{ currentUser.email }} </p>
+              <img class="avatar" *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture" width="200px">
+            </div>
+
+            <button (click)="onSignOut()" class="btn option">
+              <i>
+                <img src="../../../assets/icons/exit.png">
+              </i>
+            </button>
+            <button (click)="onOpenEditMod()" class="btn option">
+              <i>
+                <img src="../../../assets/icons/gear.png">
+              </i>
+            </button>
+
+            <!-- ___________________formulaire EDIT ______________________________ -->
+            <!--_______________________________________________________________________________-->
+            <!-- DIALOG -->
+            <p-dialog header="Identifients" [(visible)]="editDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
+
+              <app-edit-user (refresh)=refresh($event)></app-edit-user>
+
+            </p-dialog>
+
+          </app-sidebar>
+        </div>
+        <!--________________________Chat______________________________________-->
+
+        <div class="col-6 chatform">
+          <app-chat-list [currentUser]="currentUser"></app-chat-list>
+        </div>
+      </div>
+    </div>
+
+    <!--_____________partie liste______________________________________-->
+
+    <div class="col-5">
+      <app-partie-liste></app-partie-liste>
+    </div>
   </div>
-</div>
-<div class="row">
-  <a routerLink="/partie">Test</a>
+  <div class="row">
+    <a routerLink="/partie">Test</a>
+  </div>
+
 </div>

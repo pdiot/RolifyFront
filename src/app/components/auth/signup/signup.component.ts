@@ -67,7 +67,6 @@ export class SignupComponent implements OnInit {
                 this.authService.updateNamePhoto(pseudo, upload.url).then( // enregistrement du pseudo et de l'url dans firebase
                   () => {
                     this.router.navigate(['/lobby']);
-                    this.messageService.showSuccess('Welcome ' + pseudo, 'NEW PLAYER');
                   },
                   (error) => {
                     this.router.navigate(['/lobby']);

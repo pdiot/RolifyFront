@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Upload } from '../../models/upload';
 import { UploadService } from '../../services/upload.service';
 import { MessageService } from '../../services/message.service';
 import { AuthService } from '../../services/auth.service';
+import { User } from 'firebase';
 
 
 @Component({
@@ -13,35 +14,31 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./lobby.component.css']
 })
 export class LobbyComponent implements OnInit {
-  newPSW = '';
-  newEmail = '';
-  newPseudo = '';
-  newUrl = '';
-  currentUser: firebase.User;
-  // isAuth: boolean;
-  currentUpload: Upload = null;
 
-  signinForm: FormGroup;
-  errorMessage: string;
-  displayDialog = false;
-  isUpdateEmail = true;
-
-  modifPsImgForm: FormGroup;
-  errorMessagePsImg: string;
+  // @Input() currentUser: User;
+  currentUser: User;
 
   editDialog = false;
 
-  constructor(private uploadService: UploadService,
-    private formBuilder: FormBuilder, private router: Router,
+  constructor(
+    private router: Router,
     private messageService: MessageService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() {
 
-    this.authService.getCurrentUser().then(    // useless
+    // setTimeout(() => {                                        maybe good .....
+    //   this.currentUser = this.authService.currentUser;
+    //   console.log('in lobby ' + this.currentUser);
+    // }, 2000);
+
+    // this.currentUser = this.currentUserService.currentUser;
+
+    this.authService.getCurrentUser().then(    // plus sure
       (user) => {
         this.currentUser = user;
-        console.log(user);
+        console.log('in lobby ' + user);
       },
       (error) => {
         this.currentUser = null;
