@@ -1,12 +1,23 @@
 <li class="list-group-item">
-  <img [src]="chat.source.urlAvatar" class="avatar"/>
-  <div class="message">
-      {{chat.source.pseudo}}
+  <div class="row">
+    <div class="col-3 imgPseudo">
+      <img [src]="chat.source.urlAvatar" class="avatar" />
+      <h5 class="pseudo">
+        {{chat.source.pseudo}}
+      </h5>
     </div>
-  <div class="message">
-    {{chat.body}}
-  </div>
-  <div class="timeform">
-    <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="timestamp">{{chat.dateTime | date : 'dd/MM/yyyy' }}</span>
+    <div class="col-9">
+      <div class="row time">
+          <i aria-hidden="true">
+            <img src="../../../../assets/icons/clock.png">
+          </i>
+          <span class="timestamp">{{chat.dateTime | age }}</span>
+      </div>
+      <div class="row">
+        <div class="message">
+          <p>{{chat.body}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </li>

@@ -1,0 +1,39 @@
+<h4>Mes parties de MJ</h4>
+<table class="table">
+  <thead>
+    <th>Nom de la partie</th>
+    <th>Joueurs</th>
+    <th>Maître du jeu</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let partie of partiesMJ" app-partie-preview [partie]= "partie">
+      <td><button class="btn-outline-danger"><i class="far fa-times-circle"></i></button></td>
+    </tr>
+  </tbody>
+</table>
+<h4>Mes parties de Joueur</h4>
+<table class="table">
+  <thead>
+    <th>Nom de la partie</th>
+    <th>Joueurs</th>
+    <th>Maître du jeu</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let partie of partiesJoueur" app-partie-preview [partie]= "partie">
+      <td><button class="btn-outline-danger"><i class="far fa-times-circle"></i></button></td>
+    </tr>
+  </tbody>
+</table>
+<h4>Parties disponibles</h4>
+<table class="table">
+  <thead>
+    <th>Nom de la partie</th>
+    <th>Joueurs</th>
+    <th>Maître du jeu</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let partie of partiesNotIn" app-partie-preview [partie]= "partie">
+      <td><button class="btn-outline-danger"><i class="far fa-times-circle"></i></button></td>
+    </tr>
+  </tbody>
+</table>

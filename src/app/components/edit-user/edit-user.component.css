@@ -2,6 +2,11 @@
     cursor: pointer;
 }
 
+.delete {
+  background-color: transparent;
+  color: red;
+}
+
 .upload-btn-wrapper {
     position: relative;
     overflow: hidden;
@@ -35,6 +40,11 @@
     left: 0;
     top: 0;
     opacity: 0;
+  }
+
+  .butUpConf {
+    display: flex;
+    justify-content: space-between;
   }
 
  

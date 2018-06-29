@@ -20,13 +20,17 @@
             </div>
           </div>
 
-          <div class="upload-btn-wrapper">
-            <button *ngIf="!newUrl" class="btn btnUpl">Upload a file</button>
-            <button *ngIf="newUrl" class="btn btnUrl">{{newUrl}}</button>
-            <input type="file" (change)="onFileChanged($event)" name="myfile" formControlName="newUrl" />
+          <div class="butUpConf">
+            <div class="upload-btn-wrapper">
+              <button *ngIf="!newUrl" class="btn btnUpl">Upload a file</button>
+              <button *ngIf="newUrl" class="btn btnUrl">{{newUrl}}</button>
+              <input type="file" (change)="onFileChanged($event)" name="myfile" formControlName="newUrl" />
+            </div>
+
+            <button class="btn btn-primary" type="submit" [disabled]="modifPsImgForm.invalid">Enregistrer</button>
           </div>
 
-          <button class="btn btn-primary" type="submit" [disabled]="modifPsImgForm.invalid">Enregistrer</button>
+
         </form>
         <p class="text-danger">{{ errorMessagePsImg }}</p>
       </ng-template>
@@ -63,7 +67,13 @@
             <label for="pseudo">New Email</label>
             <input type="email" id="email" class="form-control" formControlName="email">
           </div>
+          <div class="butUpConf">
           <button class="btn btn-primary" type="submit" [disabled]="emailForm.invalid">Enregistrer</button>
+          <button class="btn delete"><i>
+            <img src="../../../assets/icons/delete.png">
+          </i></button>
+
+        </div>
         </form>
         <p class="text-danger">{{ errorMessageEmail }}</p>
 
