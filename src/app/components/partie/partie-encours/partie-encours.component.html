@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-4">
+    <app-sidebar>
+      <div class="col-3">
+        <app-liste-joueurs [partie]="partie"></app-liste-joueurs>
+      </div>
+      <div class="col-9 chatform">
+        <app-chat-list [utilisateur]="currentUser"></app-chat-list>
+      </div>
+    </app-sidebar>
+  </div>
+  <div class="col-8">
+    <div class="row">
+      <div class="col-2">
+        <a>QUITTER</a>
+      </div>
+      <div class="col-2">
+        <a>PARAMETRES</a>
+      </div>
+      <div class="col-6"></div>
+      <div class="col-2">{{partie.titre}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="row description-mj">
+          <div class="col-4">
+            <img src={{partie.mj.urlAvatar}}/>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <p>{{partie.mj.pseudo}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p>Maitre du Jeu</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row description-partie">
+          <div class="col">
+            <p>{{partie.description}}</p>
+          </div>
+        </div>
+        <div class="row dice">
+          <app-dice></app-dice>
+        </div>
+      </div>
+      <div class="col">
+        <app-partie-image></app-partie-image>
+      </div>
+    </div>
+    <div class="row liste-personnages">
+      <app-personnage-liste [partie]="partie"></app-personnage-liste>
+    </div>
+  </div>
+</div>

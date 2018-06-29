@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col">
+    <ul class="personnage-list">
+      <li *ngFor="let personnage of personnages">
+        <app-personnage-preview [personnage]=personnage></app-personnage-preview>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -22,14 +22,30 @@ import { IndexComponent } from './components/index/index.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { ChatListComponent } from './components/globalChat/chat-list/chat-list.component';
 import { ChatItemComponent } from './components/globalChat/chat-item/chat-item.component';
+import { UtilisateurDetailsComponent } from './components/utilisateur/utilisateur-details/utilisateur-details.component';
+import { PartieEncoursComponent } from './components/partie/partie-encours/partie-encours.component';
+import { PartieListeComponent } from './components/partie/partie-liste/partie-liste.component';
+import { PartiePreviewComponent } from './components/partie/partie-preview/partie-preview.component';
+import { PartieDetailsComponent } from './components/partie/partie-details/partie-details.component';
+import { PartieFormComponent } from './components/partie/partie-form/partie-form.component';
+import { PartieImageComponent } from './components/partie/partie-image/partie-image.component';
+import { ListeUtilisateursComponent } from './components/sidebar/liste-utilisateurs/liste-utilisateurs.component';
+import { ListeJoueursComponent } from './components/sidebar/liste-joueurs/liste-joueurs.component';
+import { PersonnageListeComponent } from './components/personnage/personnage-liste/personnage-liste.component';
+import { PersonnagePreviewComponent } from './components/personnage/personnage-preview/personnage-preview.component';
+import { PersonnageDetailsComponent } from './components/personnage/personnage-details/personnage-details.component';
+import { PersonnageFormComponent } from './components/personnage/personnage-form/personnage-form.component';
+import { SidebarComponent } from './components/sidebar/sidebar/sidebar.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { DiceComponent } from './components/partie/dice/dice.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
   { path: 'lobby', component: LobbyComponent },
   { path: 'index', component: IndexComponent },
-  { path: '', redirectTo: 'index', pathMatch: 'full' },
-  { path: '**', redirectTo: 'index' }
+  { path: 'partie', component: PartieEncoursComponent },
+  { path: '', redirectTo: 'index', pathMatch: 'full' }
 
 ];
 
@@ -44,6 +60,21 @@ const appRoutes: Routes = [
     EditUserComponent,
     ChatListComponent,
     ChatItemComponent,
+    UtilisateurDetailsComponent,
+    PartieEncoursComponent,
+    PartieListeComponent,
+    PartiePreviewComponent,
+    PartieDetailsComponent,
+    PartieFormComponent,
+    PartieImageComponent,
+    ListeUtilisateursComponent,
+    ListeJoueursComponent,
+    PersonnageListeComponent,
+    PersonnagePreviewComponent,
+    PersonnageDetailsComponent,
+    PersonnageFormComponent,
+    SidebarComponent,
+    DiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +88,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     DialogModule,
     GrowlModule,
+    AngularFontAwesomeModule
   ],
   providers: [AuthService, MessageService],
   bootstrap: [AppComponent]
