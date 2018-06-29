@@ -63,4 +63,8 @@ export class LobbyComponent implements OnInit {
     this.editDialog = check;
   }
 
+  goToPartie(): void {
+
+  }
+
 }

@@ -7,7 +7,6 @@ export class Chat {
     body: string;
 
 
-
     constructor(body: string, source: Utilisateur) {
         this.body = body;
         this.source = source;
