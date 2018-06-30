@@ -5,6 +5,7 @@ import {AuthService} from '../../../services/auth.service';
 import {User} from 'firebase';
 import {ActivatedRoute} from '@angular/router';
 import {PartieImageComponent} from '../partie-image/partie-image.component';
+import {PartieService} from '../../../services/api/partie.service';
 
 @Component({
   selector: 'app-partie-encours',
@@ -17,20 +18,24 @@ export class PartieEncoursComponent implements OnInit {
   partie: Partie;
   currentUser: User;
 
-  constructor(private auth: AuthService, private activatedRoute: ActivatedRoute) {
-    this.currentUser = auth.currentUser;
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.partieId = params['partie'];
-      console.log(this.partieId); // Print the parameter to the console.
-    });
+  constructor(private auth: AuthService, private activatedRoute: ActivatedRoute, private partieService: PartieService) {
+
   }
 
   ngOnInit() {
-    this.partie = new Partie();
-    this.partie.titre = 'Test titre';
-    this.partie.description = 'Test description';
-    this.partie.mj = new Utilisateur('urltest', 'Test MJ' , '');
 
+    this.currentUser = this.auth.currentUser;
+    this.activatedRoute.params.subscribe(
+      params => {
+      this.partieId = +params['idPartie'];
+      console.log('idPartie : ' + this.partieId); // Print the parameter to the console.
+      this.partieService.getPartie(this.partieId).subscribe(
+        partie => {
+          this.partie = partie;
+          console.log('this.partie = ' + this.partie);
+        }
+      );
+    });
   }
 
 }

@@ -7,7 +7,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let partie of partiesMJ" app-partie-preview [partie]= "partie">
-      <td><button class="btn-outline-danger"><i class="far fa-times-circle"></i></button></td>
+      <td><button class="btn-outline-danger"><fa name="circle"></fa></button></td>
     </tr>
   </tbody>
 </table>
@@ -20,7 +20,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let partie of partiesJoueur" app-partie-preview [partie]= "partie">
-      <td><button class="btn-outline-danger"><i class="far fa-times-circle"></i></button></td>
+      <a [routerLink]="['/partie', partie.id]"><fa name="cog" animation="spin"></fa></a>
     </tr>
   </tbody>
 </table>
@@ -33,7 +33,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let partie of partiesNotIn" app-partie-preview [partie]= "partie">
-      <td><button class="btn-outline-danger"><i class="far fa-times-circle"></i></button></td>
+      <td><button class="btn-outline-danger"><fa name="circle"></fa></button></td>
     </tr>
   </tbody>
 </table>

@@ -45,7 +45,7 @@ const appRoutes: Routes = [
   { path: 'auth/signin', component: SigninComponent },
   { path: 'lobby', component: LobbyComponent },
   { path: 'index', component: IndexComponent },
-  { path: 'partie', component: PartieEncoursComponent },
+  { path: 'partie/:idPartie', component: PartieEncoursComponent },
   { path: '', redirectTo: 'index', pathMatch: 'full' }
 
 ];

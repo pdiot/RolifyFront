@@ -1,9 +1,19 @@
 <div class="row">
   <div class="col">
     <ul class="personnage-list">
-      <li *ngFor="let personnage of personnages">
-        <app-personnage-preview [personnage]=personnage></app-personnage-preview>
+      <li *ngFor="let tuplePersonnageJoueur of personnages">
+        <app-personnage-preview [tuplePersonnageJoueur]=tuplePersonnageJoueur><fa name="plus" size="5x" (click)="open(content, tuplePersonnageJoueur[0])"></fa></app-personnage-preview>
       </li>
     </ul>
   </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <app-personnage-details [personnage]="personnageToDisplay" (sortie)="onUpdate($event)"></app-personnage-details>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>

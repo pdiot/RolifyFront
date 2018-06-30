@@ -69,10 +69,19 @@ export class PartieService {
 
   getPartiesByJoueur(idMj: string): Observable<Partie[]> {
     // this.log(`HeroService: fetched hero id=${id}`);
-    return this.http.get<Partie[]>(this.baseUrl + '/mj/' + idMj)
+    return this.http.get<Partie[]>(this.baseUrl + '/joueur/' + idMj)
       .pipe(
-        tap(_ => this.log(`fetched Partie by Mj id=${idMj}`, 'Fetch Element')),
+        tap(_ => this.log(`fetched Partie by Joueur id=${idMj}`, 'Fetch Element')),
         catchError(this.handleError<Partie[]>(`getPartiebyMj id=${idMj}`))
+      );
+  }
+
+  getPartiesNotIn(idUtil: string): Observable<Partie[]> {
+    // this.log(`HeroService: fetched hero id=${id}`);
+    return this.http.get<Partie[]>(this.baseUrl + '/notin/' + idUtil)
+      .pipe(
+        tap(_ => this.log(`fetched Partie by Util not in id=${idUtil}`, 'Fetch Element')),
+        catchError(this.handleError<Partie[]>(`get Partie by Util not in id=${idUtil}`))
       );
   }
 

@@ -43,8 +43,6 @@ export class LobbyComponent implements OnInit {
       (error) => {
         this.currentUser = null;
       });
-
-
   }
 
   onSignOut() {
