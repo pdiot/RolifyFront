@@ -11,6 +11,7 @@
     </tr>
   </tbody>
 </table>
+<button type=button class="btn" (click)="open(content)">Créer une nouvelle partie en tant que MJ</button>
 <h4>Mes parties de Joueur</h4>
 <table class="table">
   <thead>
@@ -33,7 +34,17 @@
   </thead>
   <tbody>
     <tr *ngFor="let partie of partiesNotIn" app-partie-preview [partie]= "partie">
-      <td><button class="btn-outline-danger"><fa name="circle"></fa></button></td>
+      <td><button class="btn-outline-danger" (click)="join(partie)"><fa name="circle"></fa></button></td>
     </tr>
   </tbody>
 </table>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <app-partie-form (sortie)="onClose($event)"></app-partie-form>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
