@@ -66,6 +66,14 @@ export class UtilisateurService {
       );
   }
 
+  getUtilisateurNotInPartie(idPartie: number): Observable<Utilisateur[]> {
+    return this.http.get<Utilisateur[]>(this.baseUrl + '/partie/mjDispos/' + idPartie)
+      .pipe(
+        tap(incidents => this.log(`fetched Utilisateurs not in partie id=${idPartie}`, 'Fetch Table')),
+        catchError(this.handleError(`getUtilisateur not in partie id=${idPartie}`, []))
+      );
+}
+
   delete(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + '/id/' + id)
       .pipe(
@@ -99,4 +107,6 @@ export class UtilisateurService {
         catchError(this.handleError<Utilisateur>('updateUtilisateur id=${utilisateur.id}'))
       );
   }
+
+
 }

@@ -15,22 +15,32 @@
       </div>
       <div class="affichageErreurs card text-white bg-danger mb-3">
         <div class="card-body" *ngIf="partieForm.controls['nbJoueurs'].hasError('required')"> Le nombre de joueurs est obligatoire.</div>
-        <div class="card-body" *ngIf="partieForm.controls['level'].hasError('min') || partieForm.controls['level'].hasError('max')">
-        Le nombre de joueurs doit être compris entre 1 et 6.</div>
+        <div class="card-body" *ngIf="partieForm.controls['nbJoueurs'].hasError('min') || partieForm.controls['nbJoueurs'].hasError('max')">
+          Le nombre de joueurs doit être compris entre 1 et 6.</div>
       </div>
     </div>
     <form [formGroup]="partieForm" (ngSubmit)="submitForm()">
 
-        <button type="submit" class="btn btn-dark">{{buttontext}}</button>
-
+      <button type="submit" class="btn btn-dark">{{buttontext}}</button>
       <div style="visibility: hidden" class="form-group">
         <input type="text" class="form-control" id="inputId" formControlName="id">
       </div>
-      <div style="visibility: hidden" class="form-group">
-        <select class="form-control" id="inputMj" formControlName="mj">
-          <!-- ngFor utilisateurs non joueurs de la partie pour edit  -->
-        </select>
-      </div>
+      <div *ngIf="entree !== undefined; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+        <div class="form-group">
+          <label for="inputMj">MJ de la partie</label>
+          <select class="form-control" id="inputMj" formControlName="mj">
+            <option *ngFor="let mj of mjDispos" [value]="mj.id" [selected]="mj.id == entree.mj.id ? true : null">{{mj.pseudo}}</option>
+            <option class="current" *ngIf="entree !== undefined" [value]="currentMJ.id">{{currentMJ.pseudo}}</option>
+          </select>
+        </div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <div style="visibility: hidden" class="form-group">
+          <mat-select class="form-control" id="inputMjHidden" formControlName="mj">
+          </mat-select>
+        </div>
+      </ng-template>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputTitre">Titre de la partie</label>
@@ -46,31 +56,28 @@
       <div class="form-row">
         <div class="form-group col-md">
           <label for="inputNbJoueurs">Nombre de joueurs</label>
-          <input type="number" class="form-control" id="inputNbJoueurs" placeholder="Nombre de joueurs" formControlName="nbJoueurs">
+          <input type="number" class="form-control" id="inputNbJoueurs" formControlName="nbJoueurs">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md butUpConf">
           <div>
-          <label for="inputImage">Image de départ de la partie</label>
-          <!-- <input type="text" class="form-control" id="inputImage" placeholder="url TODO" formControlName="image"> -->
-          <div class="upload-btn-wrapper">
-            <button *ngIf="!url" class="btn btnUpl">Choisir un avatar</button>
-            <button *ngIf="url" class="btn btnUrl">{{url}}</button>
-            <input type="file" (change)="onFileChanged($event)" id="inputImage" name="myfile" class="form-control" formControlName="image" />
+            <label for="inputImage">{{imageText}}</label>
+            <!-- <input type="text" class="form-control" id="inputImage" placeholder="url TODO" formControlName="image"> -->
+            <div class="upload-btn-wrapper">
+              <button *ngIf="!url" class="btn btnUpl">Choisir une image</button>
+              <button *ngIf="url" class="btn btnUrl">{{url}}</button>
+              <input type="file" (change)="onFileChanged($event)" id="inputImage" name="myfile" class="form-control" formControlName="image" />
+            </div>
           </div>
-        </div>
           <!-- <button type="submit" class="btn btn-dark">{{buttontext}}</button> -->
         </div>
       </div>
-
-          <div *ngIf="!partieForm.invalid">
-            <div class="progress">
-              <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-            </div>
-         
-     
-    </div>
+      <div *ngIf="!partieForm.invalid">
+        <div class="progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+        </div>
+      </div>
     </form>
   </div>
 </div>

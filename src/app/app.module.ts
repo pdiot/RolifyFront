@@ -39,13 +39,14 @@ import { SidebarComponent } from './components/sidebar/sidebar/sidebar.component
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { DiceComponent } from './components/partie/dice/dice.component';
 import { AgePipe } from './pipes/age.pipe';
+import {MatSelectModule} from '@angular/material/select';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
   { path: 'lobby', component: LobbyComponent },
   { path: 'index', component: IndexComponent },
-  { path: 'partie/:idPartie', component: PartieEncoursComponent },
+  { path: 'partie/:idPartie/:role', component: PartieEncoursComponent },
   { path: '', redirectTo: 'index', pathMatch: 'full' }
 
 ];
@@ -90,7 +91,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     DialogModule,
     GrowlModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatSelectModule
   ],
   providers: [AuthService, MessageService],
   bootstrap: [AppComponent]

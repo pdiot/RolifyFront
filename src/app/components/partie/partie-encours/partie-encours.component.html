@@ -17,7 +17,16 @@
       <div class="col-2">
         <a>PARAMETRES</a>
       </div>
-      <div class="col-6"></div>
+      <div *ngIf="role == 0; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+        <div class="col-3">
+          <a (click)="open(content)">Editer la partie</a>
+        </div>
+        <div class="col-3"></div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <div class="col-6"></div>
+      </ng-template>
       <div class="col-2">{{partie.titre}}</div>
     </div>
     <div class="row">
@@ -57,3 +66,14 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <app-partie-form [entree]="partie" [currentUser]="currentUser" (sortie)="onClose($event)"></app-partie-form>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>

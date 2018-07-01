@@ -17,7 +17,6 @@
     </th> -->
   </thead>
   <tbody>
-
     <tr *ngFor="let partie of partiesMJ" app-partie-preview [partie]="partie">
       <td style="width: 5em">
         <button class="btn" (click)="delete(partie)">
@@ -33,6 +32,7 @@
           </i>
         </button>
       </td>
+      <a [routerLink]="['/partie', partie.id, 0]"><fa name="cog" animation="spin"></fa></a>
     </tr>
 
   </tbody>
@@ -47,10 +47,8 @@
     <th>Maître du jeu</th>
   </thead>
   <tbody>
-    <tr *ngFor="let partie of partiesJoueur" app-partie-preview [partie]="partie">
-      <a [routerLink]="['/partie', partie.id]">
-        <fa name="cog" animation="spin"></fa>
-      </a>
+    <tr *ngFor="let partie of partiesJoueur" app-partie-preview [partie]= "partie">
+      <a [routerLink]="['/partie', partie.id, 1]"><fa name="cog" animation="spin"></fa></a>
     </tr>
   </tbody>
 </table>
