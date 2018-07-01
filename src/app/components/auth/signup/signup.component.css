@@ -3,6 +3,46 @@
   background-color: #232528;
 }
 
+/* LINKS */
+
+/* unvisited link */
+a:link {
+  color: #E2C447;
+  text-decoration: none;
+  font-weight:300;
+  font-size: 14px;
+}
+
+/* visited link */
+a:visited {
+  color: #E2C447;
+  font-weight:300;
+  font-size: 14px;
+}
+
+/* mouse over link */
+a:hover {
+  color: white;
+  font-weight:300;
+  font-size: 14px;
+}
+
+/* selected link */
+a:active {
+  color: white;
+  font-weight:300;
+  font-size: 14px;
+}
+
+/* MENU */
+
+.navbar-brand img {
+height: 95%;
+  width: 95%;
+}
+
+/* FORMULAIRE */
+
 #form {
   background-color: #131516;
   padding: 20px;
@@ -36,6 +76,7 @@ label {
   font-size: 14px;
   font-weight:100;
 }
+
 
 .upload-btn-wrapper {
     position: relative;

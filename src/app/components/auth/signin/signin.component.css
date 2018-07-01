@@ -25,6 +25,13 @@ a:active {
   color: #E2C447;
 }
 
+/* MENU */
+
+.navbar-brand img {
+  height: 95%;
+  width: 95%;
+}
+
 .container {
   width: 100%;
   background-color: aqua;
