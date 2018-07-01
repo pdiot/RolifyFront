@@ -16,11 +16,12 @@ import { Utilisateur } from '../../models/utilisateur';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
+
   @Output() refresh = new EventEmitter<boolean>();
 
-  isReAuth = false;
-
   currentUser: User;
+
+  isReAuth = false;
 
   newUrl = '';
   currentUpload: Upload = null;
@@ -165,7 +166,7 @@ export class EditUserComponent implements OnInit {
     const pseudo = this.modifPsImgForm.get('pseudo').value;
     if (this.newUrl) { // changement d'avatar
 
-      this.uploadService.pushUpload(this.currentUpload, this.currentUser.uid).then( // upload img dans firebase et recup de l' url
+      this.uploadService.pushUpload(this.currentUpload, this.currentUser.uid, 0).then( // upload img dans firebase et recup de l' url
         (upload) => {
           this.authService.updateNamePhoto(pseudo, upload.url).then( // enregistrement du pseudo et de l'img dans firebase
             () => {

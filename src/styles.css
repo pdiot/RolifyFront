@@ -11,6 +11,10 @@ body, * {
   cursor:pointer;
 }
 
+::-webkit-scrollbar {   /* cache la scroll bar */
+  display: none; 
+}
+
 
 
 

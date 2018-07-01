@@ -43,7 +43,7 @@
             <!-- ___________________formulaire EDIT ______________________________ -->
             <!--_______________________________________________________________________________-->
             <!-- DIALOG -->
-            <p-dialog header="Identifients" [(visible)]="editDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
+            <p-dialog header="Personnals Informations" [(visible)]="editDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
 
               <app-edit-user (refresh)=refresh($event)></app-edit-user>
 
@@ -65,8 +65,8 @@
       <app-partie-liste></app-partie-liste>
     </div>
   </div>
-  <div class="row">
+  <!-- <div class="row">
     <a routerLink="/partie">Test</a>
-  </div>
+  </div> -->
 
 </div>

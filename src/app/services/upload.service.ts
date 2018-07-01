@@ -15,12 +15,14 @@ export class UploadService {
   private basePath = '/uploads';
   // uploads: FirebaseListObservable<Upload[]>;
 
-  pushUpload(upload: Upload, id: string) {
+  pushUpload(upload: Upload, id: string, type: number) {
     return new Promise<Upload>(
       (resolve, reject) => {
         const storageRef = firebase.storage().ref();
-        const uploadTask = storageRef.child(`avatars/${id}`).put(upload.file);
-
+        let uploadTask = storageRef.child(`avatars/${id}`).put(upload.file);
+        if (type === 1) {  // image partie
+         uploadTask = storageRef.child(`partie/${id}`).put(upload.file);
+        }
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
           (snapshot) => {
             // upload in progress

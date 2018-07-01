@@ -62,7 +62,7 @@ export class SignupComponent implements OnInit {
         // recup du user
         this.authService.getCurrentUser().then(
           (user) => {
-            this.uploadService.pushUpload(this.currentUpload, user.uid).then( // upload img dans firebase et recup de l' url
+            this.uploadService.pushUpload(this.currentUpload, user.uid, 0).then( // upload img dans firebase et recup de l' url
               (upload) => {
                 this.authService.updateNamePhoto(pseudo, upload.url).then( // enregistrement du pseudo et de l'url dans firebase
                   () => {

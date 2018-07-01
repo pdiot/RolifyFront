@@ -1,0 +1,63 @@
+.btn {
+  background-color: transparent;
+}
+
+.tabParties thead {
+  display: block;
+}
+
+.tabParties tbody {
+  display: block;
+  height: 10em;
+  overflow-y: scroll;
+}
+
+.tabParties thead tr th:nth-child(1) {
+  /* column 1 ! */
+  width: 5em;
+}
+
+.tabParties thead tr th:nth-child(2) {
+  /* column 2 */
+  width: 5em;
+}
+
+.tabParties thead tr th:nth-child(3) {
+  /* column 3 */
+  width: 5em;
+}
+
+.tabParties thead tr th:nth-child(4) {
+  /* column 2 */
+  width: 5em;
+}
+
+.tabParties thead tr th:nth-child(5) {
+  /* column 2 */
+  width: 5em;
+}
+
+.tabParties tbody tr td:nth-child(1) {
+  /* column 1 ! */
+  width: 5em;
+}
+
+.tabParties tbody tr td:nth-child(2) {
+  /* column 2 */
+  width: 5em;
+}
+
+.tabParties tbody tr td:nth-child(3) {
+  /* column 2 */
+  width: 5em;
+}
+
+.tabParties tbody tr td:nth-child(4) {
+  /* column 2 */
+  width: 5em;
+}
+
+.tabParties tbody tr td:nth-child(5) {
+  /* column 2 */
+  width: 5em;
+}

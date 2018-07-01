@@ -18,8 +18,6 @@ export class ChatItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-console.log('chat ' + this.chat.source.id);
-console.log('currentUser' + this.currentUser.uid);
 
   }
 

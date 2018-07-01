@@ -1,6 +1,8 @@
 <div class="card">
   <div class="card-header">
-    <div class="card-title"><h2>{{formtitle}}</h2></div>
+    <div class="card-title">
+      <h2>{{formtitle}}</h2>
+    </div>
   </div>
   <div class="card-body">
     <div *ngIf="!partieForm.valid && formSubmitted">
@@ -13,10 +15,14 @@
       </div>
       <div class="affichageErreurs card text-white bg-danger mb-3">
         <div class="card-body" *ngIf="partieForm.controls['nbJoueurs'].hasError('required')"> Le nombre de joueurs est obligatoire.</div>
-        <div class="card-body" *ngIf="partieForm.controls['level'].hasError('min') || partieForm.controls['level'].hasError('max')"> Le nombre de joueurs doit être compris entre 1 et 6.</div>
+        <div class="card-body" *ngIf="partieForm.controls['level'].hasError('min') || partieForm.controls['level'].hasError('max')">
+        Le nombre de joueurs doit être compris entre 1 et 6.</div>
       </div>
     </div>
     <form [formGroup]="partieForm" (ngSubmit)="submitForm()">
+
+        <button type="submit" class="btn btn-dark">{{buttontext}}</button>
+
       <div style="visibility: hidden" class="form-group">
         <input type="text" class="form-control" id="inputId" formControlName="id">
       </div>
@@ -44,12 +50,27 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md">
+        <div class="form-group col-md butUpConf">
+          <div>
           <label for="inputImage">Image de départ de la partie</label>
-          <input type="text" class="form-control" id="inputImage" placeholder="url TODO" formControlName="image">
+          <!-- <input type="text" class="form-control" id="inputImage" placeholder="url TODO" formControlName="image"> -->
+          <div class="upload-btn-wrapper">
+            <button *ngIf="!url" class="btn btnUpl">Choisir un avatar</button>
+            <button *ngIf="url" class="btn btnUrl">{{url}}</button>
+            <input type="file" (change)="onFileChanged($event)" id="inputImage" name="myfile" class="form-control" formControlName="image" />
+          </div>
+        </div>
+          <!-- <button type="submit" class="btn btn-dark">{{buttontext}}</button> -->
         </div>
       </div>
-      <button type="submit" class="btn btn-dark">{{buttontext}}</button>
+
+          <div *ngIf="!partieForm.invalid">
+            <div class="progress">
+              <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+            </div>
+         
+     
+    </div>
     </form>
   </div>
 </div>

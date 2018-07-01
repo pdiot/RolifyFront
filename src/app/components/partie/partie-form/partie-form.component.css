@@ -1,0 +1,37 @@
+.btn {
+    cursor: pointer;
+}
+
+.upload-btn-wrapper .btnUpl {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .upload-btn-wrapper .btnUrl  {
+      max-width: 20em;
+    border: 2px solid black;
+    color: rgb(29, 29, 7);
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: normal;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  .butUpConf {
+    display: flex;
+    justify-content: space-between;
+  }
