@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Personnage} from '../../../models/personnage';
 
 @Component({
   selector: 'app-personnage-details',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonnageDetailsComponent implements OnInit {
 
+  @Input() personnage: Personnage;
+  @Output() sortie = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  click() {
+    this.sortie.emit('OK');
   }
 
 }

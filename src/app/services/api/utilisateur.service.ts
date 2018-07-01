@@ -74,6 +74,14 @@ export class UtilisateurService {
       );
   }
 
+  joinPartieJoueur(userId: string, partieId: number): Observable<any> {
+    return this.http.put(this.baseUrl + '/' + userId + '/parties/join/' + partieId, null)
+      .pipe(
+        tap(_ => this.log(`join partie Utilisateur id=${userId} partie id=${partieId}`, 'Put')),
+        catchError(this.handleError<Utilisateur>(`joinpartie Utilisateur id=${userId} partie id=${partieId}`))
+      );
+  }
+
   add(utilisateur: Utilisateur): Observable<any> {
     console.log('inadd ' + utilisateur.urlAvatar);
     return this.http.post(this.baseUrl, utilisateur)

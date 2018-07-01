@@ -1,31 +1,56 @@
 .list-group-item {
     border-radius: 10px;
+    margin: 3px;
+    padding-bottom: 0;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    box-shadow: 0 4px 8px 0 rgba(15, 245, 245, 0.863), 0 6px 20px 0 rgba(10, 243, 243, 0.19);
 }
 
+.perso {   /* msg du user */
+background-color: rgba(122, 219, 243, 0.877);
+color: black;
+}
+
+/* .persoSub{
+background-color: blueviolet;
+} */
+
+.other {    /* msg autre */
+background-color: whitesmoke;
+color: black;
+}
+
+/* .otherSub {
+background-color: bisque;
+} */
 
 .avatar {
     max-width: 100%;
     border-radius: 100%;
 }
 
-.imgPseudo {
+.img {
     text-align: center;
+}
+
+.pseudo {
+    font-size: 1.2em;
+    padding-bottom: 0;
 }
 
 .time {
     justify-content: flex-end;
- margin-right: 0.3em;
+ margin-right: 0.1em;
 }
 
-.timestamp {
+.form-text {
     margin-left: 0.3em;
+    font-size: 0.8em;
 }
 
-.message {
-margin-top: 2em;
-width: 100%;
+/* .message {
 
-}
+} */
 
 p {
     width: 100%;

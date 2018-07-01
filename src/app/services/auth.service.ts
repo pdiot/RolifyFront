@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private messageService: MessageService) {
 
-    this.getCurrentUser();
+  //  this.getCurrentUser();
     firebase.auth().languageCode = 'fr'; // langage du mail
 
   }
@@ -24,10 +24,10 @@ export class AuthService {
           (user) => {
             if (user) {
               this.currentUser = user;
-              this.messageService.showSuccess('Welcome ' + user.displayName, 'Back in the Game');
+              this.messageService.showSuccess('Welcome ' + user.displayName, 'Get User');
               resolve(user);
             } else {
-              // reject();
+               reject();
             }
           }
         );
@@ -40,6 +40,7 @@ export class AuthService {
       (resolve, reject) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(
           () => {
+            this.messageService.showSuccess('Welcome new  ' , 'Sign up');
             resolve();
           },
           (error) => {
@@ -56,7 +57,7 @@ export class AuthService {
         firebase.auth().signInWithEmailAndPassword(email, password).then(
           () => {
             this.getCurrentUser().then(user => {
-              this.messageService.showSuccess('Welcome back ' + user.displayName, 'Back');
+              this.messageService.showSuccess('Welcome back ' + user.displayName, 'Sign in');
               resolve(user);
             });
           },

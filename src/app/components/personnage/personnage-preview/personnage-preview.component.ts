@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Personnage} from '../../../models/personnage';
+import {Utilisateur} from '../../../models/utilisateur';
 
 @Component({
   selector: 'app-personnage-preview',
@@ -8,7 +9,7 @@ import {Personnage} from '../../../models/personnage';
 })
 export class PersonnagePreviewComponent implements OnInit {
 
-  @Input() personnage: Personnage;
+  @Input() tuplePersonnageJoueur: [Personnage, Utilisateur];
   @Input() index: number;
   constructor() { }
 

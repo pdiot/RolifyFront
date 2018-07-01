@@ -40,17 +40,17 @@ export class ChatGlobalService {
     };
   }
 
-  getChats() {
-      return this.http.get<Chat[]>(this.baseUrl);
-  }
-  // getChats(): Observable<Chat[]> {
-  //   // this.log('HeroService: fetched heroes');
-  //   return this.http.get<Chat[]>(this.baseUrl)
-  //     .pipe(
-  //       tap(incidents => this.log(`fetched Chats`, 'Fetch Table')),
-  //       catchError(this.handleError('getChats', []))
-  //     );
+  // getChats() {
+  //     return this.http.get<Chat[]>(this.baseUrl);
   // }
+  getChats(): Observable<Chat[]> {
+    // this.log('HeroService: fetched heroes');
+    return this.http.get<Chat[]>(this.baseUrl)
+      .pipe(
+        tap(chats => {}),
+        catchError(this.handleError('getChats', []))
+      );
+  }
 
   getChat(id: string): Observable<Chat> {
     // this.log(`HeroService: fetched hero id=${id}`);

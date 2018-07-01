@@ -1,6 +1,7 @@
 .lobby {
-    height: 50em;   /* doit etre fixe */
+    height: 40em;   /* doit etre fixe */
 }
+
 
 .avatar {
     border-radius: 100%;

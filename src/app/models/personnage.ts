@@ -6,6 +6,7 @@ export class Personnage {
   classe: string;
   race: string;
   sexe: string;
+  urlAvatar: string;
   pv: number;
   fo: number;
   defense: number;
