@@ -44,8 +44,8 @@ export class PartieService {
     // this.log('HeroService: fetched heroes');
     return this.http.get<Partie[]>(this.baseUrl)
       .pipe(
-        tap(incidents => this.log(`fetched Parties`, 'Fetch Table')),
-        catchError(this.handleError('getincidents', []))
+        tap(partie => {}),
+        catchError(this.handleError('getParties', []))
       );
   }
 

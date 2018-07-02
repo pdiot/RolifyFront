@@ -70,11 +70,11 @@ export class SignupComponent implements OnInit {
                   },
                   (error) => {
                     this.router.navigate(['/lobby']);
-                    this.messageService.showSuccess('Welcome ' + pseudo + '; error name or photo: ' + error, 'NEW PLAYER');
+                  //  this.messageService.showSuccess('Welcome ' + pseudo + '; error name or photo: ' + error, 'NEW PLAYER');
                   });
                 // enregistrement dans la bdd
                 this.utilisateurService.add(new Utilisateur(user.uid, pseudo, upload.url)).subscribe(result => {
-                  this.messageService.showSuccess('Welcome ' + pseudo, 'BDD');
+                //  this.messageService.showSuccess('Welcome ' + pseudo, 'BDD');
                   console.log(result);
                 });
               },

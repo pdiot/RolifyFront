@@ -57,7 +57,7 @@ export class AuthService {
         firebase.auth().signInWithEmailAndPassword(email, password).then(
           () => {
             this.getCurrentUser().then(user => {
-              this.messageService.showSuccess('Welcome back ' + user.displayName, 'Sign in');
+              // this.messageService.showSuccess('Welcome back ' + user.displayName, 'Sign in');
               resolve(user);
             });
           },

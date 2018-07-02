@@ -43,8 +43,8 @@ export class UtilisateurService {
     // this.log('HeroService: fetched heroes');
     return this.http.get<Utilisateur[]>(this.baseUrl)
       .pipe(
-        tap(incidents => this.log(`fetched Utilisateurs`, 'Fetch Table')),
-        catchError(this.handleError('getincidents', []))
+        tap(util => { }),
+        catchError(this.handleError('getUtilisateurs', []))
       );
   }
 
@@ -52,7 +52,7 @@ export class UtilisateurService {
     // this.log(`HeroService: fetched hero id=${id}`);
     return this.http.get<Utilisateur>(this.baseUrl + '/common/' + id)
       .pipe(
-        tap(_ => this.log(`fetched Utilisateur id=${id}`, 'Fetch Element')),
+        tap(_ => { }),
         catchError(this.handleError<Utilisateur>(`getUtilisateur id=${id}`))
       );
   }
@@ -61,7 +61,7 @@ export class UtilisateurService {
     // this.log(`HeroService: fetched hero id=${id}`);
     return this.http.get<Utilisateur>(this.baseUrl + '/' + id)
       .pipe(
-        tap(_ => this.log(`fetched Utilisateur id=${id}`, 'Fetch Element')),
+        tap(_ => { }),
         catchError(this.handleError<Utilisateur>(`getUtilisateur id=${id}`))
       );
   }
@@ -69,15 +69,15 @@ export class UtilisateurService {
   getUtilisateurNotInPartie(idPartie: number): Observable<Utilisateur[]> {
     return this.http.get<Utilisateur[]>(this.baseUrl + '/partie/mjDispos/' + idPartie)
       .pipe(
-        tap(incidents => this.log(`fetched Utilisateurs not in partie id=${idPartie}`, 'Fetch Table')),
+        tap(util => { }),
         catchError(this.handleError(`getUtilisateur not in partie id=${idPartie}`, []))
       );
-}
+  }
 
   delete(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + '/id/' + id)
       .pipe(
-        tap(_ => this.log(`delete Utilisateur id=${id}`, 'Delete')),
+        tap(_ => { }),
         catchError(this.handleError<Utilisateur>(`deleteUtilisateur id=${id}`))
       );
   }
@@ -85,7 +85,7 @@ export class UtilisateurService {
   joinPartieJoueur(userId: string, partieId: number): Observable<any> {
     return this.http.put(this.baseUrl + '/' + userId + '/parties/join/' + partieId, null)
       .pipe(
-        tap(_ => this.log(`join partie Utilisateur id=${userId} partie id=${partieId}`, 'Put')),
+        tap(_ => { }),
         catchError(this.handleError<Utilisateur>(`joinpartie Utilisateur id=${userId} partie id=${partieId}`))
       );
   }
@@ -94,7 +94,7 @@ export class UtilisateurService {
     console.log('inadd ' + utilisateur.urlAvatar);
     return this.http.post(this.baseUrl, utilisateur)
       .pipe(
-        tap(_ => this.log(`add Utilisateur`, 'Add')),
+        tap(_ => { }),
         catchError(this.handleError<Utilisateur>(`addUtilisateur`))
       );
   }
@@ -103,7 +103,7 @@ export class UtilisateurService {
     console.log('updateInfo ' + utilisateur.id);
     return this.http.put(this.baseUrl, utilisateur)
       .pipe(
-        tap(_ => this.log(`updated utilisateur id=${utilisateur.id}`, 'Update')),
+        tap(_ => { }),
         catchError(this.handleError<Utilisateur>('updateUtilisateur id=${utilisateur.id}'))
       );
   }

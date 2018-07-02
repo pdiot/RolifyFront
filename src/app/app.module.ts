@@ -39,6 +39,8 @@ import { SidebarComponent } from './components/sidebar/sidebar/sidebar.component
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { DiceComponent } from './components/partie/dice/dice.component';
 import { AgePipe } from './pipes/age.pipe';
+import {MatSelectModule} from '@angular/material/select';
+
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -90,7 +92,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     DialogModule,
     GrowlModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatSelectModule
+
   ],
   providers: [AuthService, MessageService],
   bootstrap: [AppComponent]

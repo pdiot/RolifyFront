@@ -1,15 +1,20 @@
 <h4>Mes parties de MJ</h4>
+<button class="btn" (click)="refresh()">
+  <i>
+    <img src="../../../assets/icons/refresh.png">
+  </i>
+</button>
 
 <table class="table tabParties">
   <thead>
     <th style="width: 10em">Nom</th>
-    <th style="width: 10em">Nb</th>
-    <th style="width: 10em">MJ</th>
-    <th style="width: 5em"></th>
+    <th style="width: 5em">Joueurs</th>
+    <th style="width: 10em">Maitre du jeu</th>
+    <th style="width: 5em">Entrer</th>
     <th style="width: 5em">
       <button class="btn" (click)="open(content)">
         <i>
-          <img src="../../../assets/icons/plus.png">
+          <img src="../../../assets/icons/plus.png" width="20px">
         </i>
       </button>
     </th>
@@ -19,7 +24,7 @@
   <tbody>
     <tr *ngFor="let partie of partiesMJ" app-partie-preview [partie]="partie">
       <td style="width: 5em">
-        <button class="btn" (click)="delete(partie)">
+        <button class="btn" [routerLink]="['/partie', partie.id, 0]">
           <i>
             <img src="../../../assets/icons/network.png">
           </i>
@@ -32,7 +37,7 @@
           </i>
         </button>
       </td>
-      <a [routerLink]="['/partie', partie.id, 0]"><fa name="cog" animation="spin"></fa></a>
+      <!-- <a [routerLink]="['/partie', partie.id, 0]"><fa name="cog" animation="spin"></fa></a> -->
     </tr>
 
   </tbody>
@@ -42,22 +47,33 @@
 <h4>Mes parties de Joueur</h4>
 <table class="table tabParties">
     <thead>
-    <th style="width: 10em">Nom de la partie</th>
-    <th style="width: 10em">Joueurs</th>
+    <th style="width: 10em">Nom</th>
+    <th style="width: 5em">Joueurs</th>
     <th style="width: 10em">Maître du jeu</th>
+    <th style="width: 5em">Entrer</th>
+
   </thead>
   <tbody>
     <tr *ngFor="let partie of partiesJoueur" app-partie-preview [partie]= "partie">
-      <a [routerLink]="['/partie', partie.id, 1]"><fa name="cog" animation="spin"></fa></a>
+        <td style="width: 5em">
+            <button class="btn" [routerLink]="['/partie', partie.id, 1]">
+              <i>
+                <img src="../../../assets/icons/network.png">
+              </i>
+            </button>
+          </td>
+      <!-- <a [routerLink]="['/partie', partie.id, 1]"><fa name="cog" animation="spin"></fa></a> -->
     </tr>
   </tbody>
 </table>
 <h4>Parties disponibles</h4>
 <table class="table tabParties">
     <thead>
-    <th style="width: 10em">Nom de la partie</th>
-    <th style="width: 10em" >Joueurs</th>
+    <th style="width: 10em">Nom</th>
+    <th style="width: 5em" >Dispo</th>
     <th style="width: 10em">Maître du jeu</th>
+    <th style="width: 5em">Join</th>
+
   </thead>
   <tbody>
     <tr *ngFor="let partie of partiesNotIn" app-partie-preview [partie]="partie">

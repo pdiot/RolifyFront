@@ -81,4 +81,8 @@ export class PartieListeComponent implements OnInit {
     }
   }
 
+  refresh() {
+    this.ngOnInit();
+  }
+
 }

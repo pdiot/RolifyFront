@@ -33,10 +33,6 @@ export class PartieEncoursComponent implements OnInit {
 
   ngOnInit() {
 
-    this.authService.getCurrentUser().then(    // plus sure
-      (user) => {
-        this.currentUser = user;
-        console.log('current user : ' + this.auth.currentUser);
         this.activatedRoute.params.subscribe(
           params => {
             this.partieId = +params['idPartie'];
@@ -49,6 +45,24 @@ export class PartieEncoursComponent implements OnInit {
               }
             );
           });
+
+    this.authService.getCurrentUser().then(    // plus sure
+      (user) => {
+        this.currentUser = user;
+      //  // console.log('current user : ' + this.auth.currentUser);
+
+      //   this.activatedRoute.params.subscribe(
+      //     params => {
+      //       this.partieId = +params['idPartie'];
+      //       console.log('idPartie : ' + this.partieId);
+      //       this.role = params['role'];
+      //       this.partieService.getPartie(this.partieId).subscribe(
+      //         partie => {
+      //           this.partie = partie;
+      //           console.log('this.partie = ' + this.partie);
+      //         }
+      //       );
+      //     });
       },
       (error) => {
         this.currentUser = null;

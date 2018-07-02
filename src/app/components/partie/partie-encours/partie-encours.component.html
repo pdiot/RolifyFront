@@ -5,14 +5,14 @@
         <app-liste-joueurs [partie]="partie"></app-liste-joueurs>
       </div>
       <div class="col-9 chatform">
-        <app-chat-list [currentUser]="currentUser"></app-chat-list>
+        <app-chat-list [currentUser]="currentUser" [idPartie]="partieId"></app-chat-list>
       </div>
     </app-sidebar>
   </div>
   <div class="col-8">
     <div class="row">
       <div class="col-2">
-        <a>QUITTER</a>
+        <a routerLink="/lobby">QUITTER</a>
       </div>
       <div class="col-2">
         <a>PARAMETRES</a>
@@ -27,18 +27,18 @@
       <ng-template #elseBlock>
         <div class="col-6"></div>
       </ng-template>
-      <div class="col-2">{{partie.titre}}</div>
+      <div *ngIf="partie" class="col-2">{{partie.titre}}</div>
     </div>
     <div class="row">
       <div class="col-4">
         <div class="row description-mj">
-          <div class="col-4">
+          <div *ngIf="partie" class="col-4">
             <img src={{partie.mj.urlAvatar}} width="50px"/>
           </div>
           <div class="col">
             <div class="row">
               <div class="col">
-                <p>{{partie.mj.pseudo}}</p>
+                <p *ngIf="partie">{{partie.mj.pseudo}}</p>
               </div>
             </div>
             <div class="row">
@@ -50,7 +50,7 @@
         </div>
         <div class="row description-partie">
           <div class="col">
-            <p>{{partie.description}}</p>
+            <p *ngIf="partie">{{partie.description}}</p>
           </div>
         </div>
         <div class="row dice">
