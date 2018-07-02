@@ -12,3 +12,29 @@
   overflow-y: scroll;
 }
 
+h4 {
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: -1px;
+  padding-top: 20px;
+  text-align: center;
+  padding-bottom: 13px;
+  color: #E2C447;
+  border-top: solid 1px #232528;
+}
+
+.table thead th {
+  vertical-align: top !important;
+  border-bottom: 0px !important;
+  border-top: solid 1px #232528;
+  width: 12em !important;
+  font-weight: 200;
+  font-size: 10px;
+}
+
+#add_party {
+  width: 100%;
+  height: 59px;
+  border: dashed 1px #C9C9C9;
+  margin-bottom: 10px;
+}

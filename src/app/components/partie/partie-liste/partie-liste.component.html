@@ -1,16 +1,11 @@
-<h4>Mes parties de MJ</h4>
-<button class="btn" (click)="refresh()">
-  <i>
-    <img src="../../../assets/icons/refresh.png">
-  </i>
-</button>
+<h4>MES PARTIES MAITRE DU JEU</h4>
 
 <table class="table tabParties">
   <thead>
-    <th style="width: 10em">Nom</th>
-    <th style="width: 5em">Joueurs</th>
-    <th style="width: 10em">Maitre du jeu</th>
-    <th style="width: 5em">Entrer</th>
+    <th style="width: 10em">NOM</th>
+    <th style="width: 10em">JOUEURS</th>
+    <th style="width: 10em">MAITRE DU JEU</th>
+    <th style="width: 5em"></th>
     <th style="width: 5em">
       <button class="btn" (click)="open(content)">
         <i>
@@ -43,8 +38,11 @@
   </tbody>
 
 </table>
+
+<div id="add_party"></div>
+
 <!-- <button type=button class="btn" (click)="open(content)">Créer une nouvelle partie en tant que MJ</button> -->
-<h4>Mes parties de Joueur</h4>
+<h4>MES PARTIES EN COURS</h4>
 <table class="table tabParties">
     <thead>
     <th style="width: 10em">Nom</th>
@@ -66,7 +64,7 @@
     </tr>
   </tbody>
 </table>
-<h4>Parties disponibles</h4>
+<h4>PARTIES DISPONIBLES</h4>
 <table class="table tabParties">
     <thead>
     <th style="width: 10em">Nom</th>

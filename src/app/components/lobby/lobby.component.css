@@ -1,3 +1,58 @@
+/* overwrite du BODY */
+::ng-deep body{
+  background-color: #232528;
+  color: white;
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: 100;
+}
+
+/* unvisited link */
+a:link{
+  color: #E2C447;
+  text-decoration: none;
+  font-weight:400;
+}
+
+/* visited link */
+a:visited {
+  color: #E2C447;
+  font-weight:400;
+}
+
+/* mouse over link */
+a:hover {
+  color: white;
+  font-weight:400;
+}
+
+/* selected link */
+a:active {
+  color: #E2C447;
+  font-weight:400;
+}
+
+/* SIDEBAR */
+
+#sidebar {
+  background-color: #484B52;
+}
+
+/* CHAT */
+#chat {
+  background-color: #36393E;
+}
+
+/* PARTY */
+#party {
+  background-color: #484B52;
+}
+
+
+.row {height: 100%}
+
 .lobby {
     height: 40em;   /* doit etre fixe */
 }
@@ -10,3 +65,8 @@
   .option {
       background-color: transparent;
   }
+
+.navbar-brand img {
+  height: 95%;
+  width: 95%;
+}

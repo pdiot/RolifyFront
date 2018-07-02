@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class UtilisateurService {
 
 
-  baseUrl = 'http://localhost:8080/backend/api/utilisateurs';
+  baseUrl = 'localhost:8080/backend/api/utilisateurs';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 

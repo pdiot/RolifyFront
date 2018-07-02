@@ -94,7 +94,6 @@ const appRoutes: Routes = [
     GrowlModule,
     AngularFontAwesomeModule,
     MatSelectModule
-
   ],
   providers: [AuthService, MessageService],
   bootstrap: [AppComponent]

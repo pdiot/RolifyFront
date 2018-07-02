@@ -5,18 +5,31 @@ body, * {
 
   font-family: 'Roboto', sans-serif;
 
-} */
+}
 
 * {
   cursor:pointer;
 }
 
 ::-webkit-scrollbar {   /* cache la scroll bar */
-  display: none; 
+  display: none;
 }
+
+.container-fluid {
+  max-width: 100% !important;
+  margin: 1px !important;
+  padding-left: 0px !important;;
+  padding-right: 0px !important;;
+}
+
 
 a:hover {
  cursor: pointer;
+}
+
+.container {
+  max-width: 100% !important;
+  margin: 1px !important;
 }
 
 

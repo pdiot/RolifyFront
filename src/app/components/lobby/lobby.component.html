@@ -1,27 +1,26 @@
 <div class="lobby">
 
-  <div class="row">
-    <div class="col-2">
-      <h1> ROLIFY </h1>
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#"><img src="../../../../assets/logo/logo_menu.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" [routerLink]="" (click)="onSignOut()">DECONEXION</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="" (click)="onOpenEditMod()">PARAMETRE</a></li>
+      </ul>
+      <span class="navbar-text">
+
+    </span>
     </div>
-    <div class="col">
-      <div class="row">
-        <div class="col">
-          <p>DECONNEXION</p>
-        </div>
-        <div class="col">
-          <p>LOBBY ROOM</p>
-        </div>
-        <div class="col">
-          <p>MON COMPTE</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  </nav>
+
+
   <div class="row">
     <div class="col-7">
       <div class="row">
-        <div class="col-6">
+        <div class="col-4" id="sidebar">
           <app-sidebar>
             <div *ngIf=currentUser>
               <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
@@ -29,16 +28,6 @@
               <img class="avatar" *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture" width="200px">
             </div>
 
-            <button (click)="onSignOut()" class="btn option">
-              <i>
-                <img src="../../../assets/icons/exit.png">
-              </i>
-            </button>
-            <button (click)="onOpenEditMod()" class="btn option">
-              <i>
-                <img src="../../../assets/icons/gear.png">
-              </i>
-            </button>
 
             <!-- ___________________formulaire EDIT ______________________________ -->
             <!--_______________________________________________________________________________-->
@@ -53,15 +42,15 @@
         </div>
         <!--________________________Chat______________________________________-->
 
-        <div class="col-6 chatform">
-          <app-chat-list [currentUser]="currentUser" [idPartie]=0></app-chat-list>
+        <div class="col-8 chatform" id="chat">
+          <app-chat-list [currentUser]="currentUser"></app-chat-list>
         </div>
       </div>
     </div>
 
     <!--_____________partie liste______________________________________-->
 
-    <div class="col-5">
+    <div class="col-5" id="party">
       <app-partie-liste></app-partie-liste>
     </div>
   </div>

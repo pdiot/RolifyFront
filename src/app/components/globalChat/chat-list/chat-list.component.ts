@@ -110,13 +110,11 @@ export class ChatListComponent implements OnInit {
 
   public sendMessage(): void {
     if (this.content !== '') {
-      if (this.idPartie === 0) {   // global chat
-        this.utilisateurService.getUtilisateur(this.authService.currentUser.uid).subscribe(util => {
-          // enregistrement dans la bdd
-          this.chatService.add(new Chat(this.content, util)).subscribe(result => {
-            this.messageService.showSuccess('add chat ' + util.pseudo, 'BDD');
-            this.content = '';
-          });
+      this.utilisateurService.getUtilisateur('1').subscribe(util => {
+        // enregistrement dans la bdd
+        this.chatService.add(new Chat(this.content, util)).subscribe(result => {
+          this.messageService.showSuccess('add chat ' + util.pseudo, 'BDD');
+          this.content = '';
         });
 
       } else {
