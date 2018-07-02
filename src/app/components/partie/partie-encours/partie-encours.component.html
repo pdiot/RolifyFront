@@ -2,12 +2,12 @@
   <div class="col-4">
     <app-sidebar>
       <div class="col-3">
-        <app-liste-joueurs [partie]="partie"></app-liste-joueurs>
+        <!-- <app-liste-joueurs *ngIf="partie" [partie]="partie"></app-liste-joueurs> -->
       </div>
       <div class="col-9 chatform">
-        <app-chat-list [currentUser]="currentUser" [idPartie]="partieId"></app-chat-list>
+        <app-chat-list *ngIf="partie" [currentUser]="currentUser" [dice]="dice" [idPartie]="partieId"></app-chat-list>
       </div>
-    </app-sidebar>
+    </app-sidebar> 
   </div>
   <div class="col-8">
     <div class="row">
@@ -54,11 +54,11 @@
           </div>
         </div>
         <div class="row dice">
-          <app-dice></app-dice>
+          <app-dice (refresh)=refresh($event)></app-dice>
         </div>
       </div>
-      <div class="col">
-        <app-partie-image></app-partie-image>
+      <div *ngIf="partie" class="col">
+        <app-partie-image [img]="partie.image"></app-partie-image>
       </div>
     </div>
     <div class="row liste-personnages">

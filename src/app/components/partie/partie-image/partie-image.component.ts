@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-partie-image',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PartieImageComponent implements OnInit {
 
+  @Input() img: string;
+
   constructor() { }
 
   ngOnInit() {
+    console.log('in imgcomp ' + this.img);
   }
 
 }

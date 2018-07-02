@@ -25,6 +25,9 @@ export class ChatListComponent implements OnInit {
   @Input('idPartie')
   public idPartie: number;
 
+  @Input('dice')
+  public dice: number;
+
   public chats = [];
   content = '';
 
@@ -41,6 +44,19 @@ export class ChatListComponent implements OnInit {
 
 
   ngOnInit() {
+
+    if (this.dice) {
+      console.log('in chat list dice : ' + this.dice);
+      this.utilisateurService.getUtilisateur('1').subscribe(util => {
+        this.partieService.getPartie(this.idPartie).subscribe(partie => {
+          this.chatPartieService.add(new Chatpartie('Lancer de dés: ' + this.dice, util, partie)).subscribe(result => {
+         //   this.messageService.showSuccess('add chatpartie ' + util.pseudo, 'BDD');
+            this.content = '';
+          });
+        });
+      });
+    }
+
     console.log('in chat list idPartie ' + this.idPartie);
     // this.idPartie = 2;
     if (this.idPartie === 0) {   // global chat
