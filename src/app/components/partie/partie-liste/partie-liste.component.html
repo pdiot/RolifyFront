@@ -40,11 +40,11 @@
 </table>
 <!-- <button type=button class="btn" (click)="open(content)">Créer une nouvelle partie en tant que MJ</button> -->
 <h4>Mes parties de Joueur</h4>
-<table class="table">
-  <thead>
-    <th>Nom de la partie</th>
-    <th>Joueurs</th>
-    <th>Maître du jeu</th>
+<table class="table tabParties">
+    <thead>
+    <th style="width: 10em">Nom de la partie</th>
+    <th style="width: 10em">Joueurs</th>
+    <th style="width: 10em">Maître du jeu</th>
   </thead>
   <tbody>
     <tr *ngFor="let partie of partiesJoueur" app-partie-preview [partie]= "partie">
@@ -53,11 +53,11 @@
   </tbody>
 </table>
 <h4>Parties disponibles</h4>
-<table class="table">
-  <thead>
-    <th>Nom de la partie</th>
-    <th>Joueurs</th>
-    <th>Maître du jeu</th>
+<table class="table tabParties">
+    <thead>
+    <th style="width: 10em">Nom de la partie</th>
+    <th style="width: 10em" >Joueurs</th>
+    <th style="width: 10em">Maître du jeu</th>
   </thead>
   <tbody>
     <tr *ngFor="let partie of partiesNotIn" app-partie-preview [partie]="partie">

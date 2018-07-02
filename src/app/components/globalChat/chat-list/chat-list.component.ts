@@ -39,6 +39,8 @@ console.log('in chat list ' + this.currentUser);
       .subscribe(tab => {
         // this.chats = tab.slice(tab.length - 5, tab.length);
         this.chats = tab;
+        console.log('document.body.scrollHeight ' + document.body.scrollHeight);
+        window.scrollTo(0, document.body.scrollHeight);
         setInterval(() => this.getChats()
           , 10000);
       });

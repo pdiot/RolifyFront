@@ -47,7 +47,9 @@
                  id="password"
                  class="form-control"
                  formControlName="password">
-          <small id="subscribeHelp" class="form-text text-muted"><a href="emailReset()">J'ai encore oublié mon mot de passe :(</a></small>
+                 <small *ngIf="this.signinForm.controls['password'].hasError('pattern')" class="form-text text-muted">6..30 [0-9a-zA-Z] </small>
+                 <a href="#" (click)="emailReset()">J'ai encore oublié mon mot de passe :(</a>
+          <!-- <small id="subscribeHelp" class="form-text text-muted"><a href="emailReset()">J'ai encore oublié mon mot de passe :(</a></small> -->
         </div>
         <button class="btn btn-primary" type="submit"  id="btn_valid" [disabled]="signinForm.invalid">Se connecter</button>
       </form>

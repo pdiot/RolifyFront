@@ -9,13 +9,12 @@ import { AuthService } from '../../services/auth.service';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
 
-    // setTimeout(() => {
-    //   this.gotoLobby();
-    // }, 5000);
 
 
     this.authService.getCurrentUser().then((user) => {

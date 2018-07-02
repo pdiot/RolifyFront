@@ -20,29 +20,26 @@ export class LobbyComponent implements OnInit {
 
   editDialog = false;
 
-  constructor(
-    private router: Router,
+  constructor(private uploadService: UploadService,
+   private router: Router,
     private messageService: MessageService,
     private authService: AuthService,
   ) { }
 
   ngOnInit() {
 
-    // setTimeout(() => {                                        maybe good .....
-    //   this.currentUser = this.authService.currentUser;
-    //   console.log('in lobby ' + this.currentUser);
-    // }, 2000);
-
-    // this.currentUser = this.currentUserService.currentUser;
-
-    this.authService.getCurrentUser().then(    // plus sure
+ // this.currentUser = this.currentUserService.currentUser;
+// console.log('in lobby ' + this.currentUser.displayName);
+    this.authService.getCurrentUser().then(    //
       (user) => {
         this.currentUser = user;
-        console.log('in lobby ' + user);
+        console.log(user);
       },
       (error) => {
         this.currentUser = null;
       });
+
+
   }
 
   onSignOut() {

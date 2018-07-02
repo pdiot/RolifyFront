@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit() {
-  //  console.log('on init app comp');
+    console.log('on init app comp');
     firebase.initializeApp(this.config);
 
     // const unsubscribe: Unsubscribe = firebase
@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
     //       unsubscribe();
     //     } else {
     //       console.log('appts ' + user.displayName);
-    //       this.currentUserService.currentUser = user;
     //       this.currentUser = user;
     //       unsubscribe();
     //     }

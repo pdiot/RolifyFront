@@ -48,6 +48,7 @@
             <input type="password" id="psw1" class="form-control" formControlName="psw1">
             <label for="psw2">Confirm Password</label>
             <input type="password" id="psw2" class="form-control" formControlName="psw2">
+            <small *ngIf="this.pswForm.controls['psw2'].hasError('pattern')" class="form-text text-muted">6..30 [0-9a-zA-Z] </small>
           </div>
           <button class="btn btn-primary" type="submit" [disabled]="pswForm.invalid">Enregistrer</button>
         </form>

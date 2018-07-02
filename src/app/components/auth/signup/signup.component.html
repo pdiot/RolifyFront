@@ -50,6 +50,8 @@
       <div class="form-group">
         <label for="password">MOT DE PASSE</label>
         <input type="password" id="password" class="form-control" formControlName="password">
+        <small *ngIf="this.signupForm.controls['password'].hasError('pattern')" class="form-text text-muted">6..30 [0-9a-zA-Z] </small>
+
       </div>
 
 

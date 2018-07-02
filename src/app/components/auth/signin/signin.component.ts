@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { MessageService } from '../../../services/message.service';
 
 @Component({
   selector: 'app-signin',
@@ -14,6 +15,7 @@ export class SigninComponent implements OnInit {
   errorMessage: string;
 
   constructor(private formBuilder: FormBuilder,
+    private messageService: MessageService,
     private authService: AuthService,
     private router: Router) { }
 
@@ -45,6 +47,8 @@ export class SigninComponent implements OnInit {
   emailReset() {
     const email = this.signinForm.get('email').value;
     this.authService.emailReset(email);
+    this.messageService.showSuccess('Un mail de reset a été envoyé à  ' + email, 'Reset');
+
   }
 
 }
