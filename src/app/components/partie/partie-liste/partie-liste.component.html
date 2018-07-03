@@ -34,7 +34,7 @@
 </table>
 
 <!-- AJOUTER UNE PARTIE -->
-<button id="add_party" [routerLink]="['/partie', partie.id, 0]"></button>
+<button id="add_party" (click)="open(content)"></button>
 
 <!-- <button type=button class="btn" (click)="open(content)">Créer une nouvelle partie en tant que MJ</button> -->
 <h4>MES PARTIES EN COURS</h4>

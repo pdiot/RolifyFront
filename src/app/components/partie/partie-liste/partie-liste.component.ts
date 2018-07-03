@@ -32,13 +32,13 @@ export class PartieListeComponent implements OnInit {
       (user) => {
         this.utilisateur = user;
         console.log('User dans partie-liste : user');
-        this.partieService.getPartiesByJoueur('0').subscribe(
+        this.partieService.getPartiesByJoueur(this.utilisateur.uid).subscribe(
           parties => this.partiesJoueur = parties
         );
-        this.partieService.getPartiesByMj('0').subscribe(
+        this.partieService.getPartiesByMj(this.utilisateur.uid).subscribe(
           parties => this.partiesMJ = parties
         );
-        this.partieService.getPartiesNotIn('0').subscribe(
+        this.partieService.getPartiesNotIn(this.utilisateur.uid).subscribe(
           parties => this.partiesNotIn = parties
         );
       },
