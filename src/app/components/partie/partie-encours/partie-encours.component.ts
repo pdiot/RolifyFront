@@ -27,6 +27,7 @@ export class PartieEncoursComponent implements OnInit {
   // dice: number;
 
   @ViewChild('persoForm') persoForm;
+  @ViewChild('persoList') persoList;
 
   constructor(private auth: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -53,6 +54,7 @@ export class PartieEncoursComponent implements OnInit {
               (user) => {
                 this.currentUser = user;
                 console.log('User récupéré : uid = ' + user.uid);
+                console.log('currentUser: uid = ' + this.currentUser.uid);
                 console.log('this.role : ' + this.role);
                 if (this.role == 1) {
                   console.log('On est un joueur')
@@ -82,7 +84,7 @@ export class PartieEncoursComponent implements OnInit {
   onClose(event) {
     if (event === 'UPDATED') {
       this.modalRef.close();
-      this.ngOnInit();
+      this.persoList.ngOnInit();
     }
     if (event === 'MJCHANGED') {
       this.modalRef.close();
@@ -91,7 +93,7 @@ export class PartieEncoursComponent implements OnInit {
     if (event === 'CREATED') {
       console.log('Sortie reçue');
       this.modalRef.close();
-      this.ngOnInit();
+      this.persoList.ngOnInit();
     }
   }
 

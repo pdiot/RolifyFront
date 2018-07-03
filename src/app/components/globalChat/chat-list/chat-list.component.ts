@@ -117,6 +117,7 @@ export class ChatListComponent implements OnInit {
   public sendMessage(): void {
     if (this.content !== '') {
       if (this.idPartie === 0) {   // global chat
+        console.log('Envoi d\'un message avec idpartie === 0');
         this.utilisateurService.getUtilisateur(this.authService.currentUser.uid).subscribe(util => {
           // enregistrement dans la bdd
           this.chatService.add(new Chat(this.content, util)).subscribe(result => {
@@ -126,6 +127,7 @@ export class ChatListComponent implements OnInit {
         });
 
       } else {
+        console.log('Envoi d\'un message avec idpartie === ' + this.idPartie);
         this.utilisateurService.getUtilisateur(this.authService.currentUser.uid).subscribe(util => {
           this.partieService.getPartie(this.idPartie).subscribe(partie => {
             this.chatPartieService.add(new Chatpartie(this.content, util, partie)).subscribe(result => {
