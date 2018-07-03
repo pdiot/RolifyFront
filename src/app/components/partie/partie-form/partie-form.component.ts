@@ -138,7 +138,7 @@ export class PartieFormComponent implements OnInit {
             );
           }
         );
-      } else {
+      } else {  // modification
         console.log('id trouvée');
         this.utilService.getUtilisateur(this.currentUser.uid).subscribe(
           user => {
@@ -149,28 +149,36 @@ export class PartieFormComponent implements OnInit {
             this.utilService.getUtilisateur(this.partieForm.value['mj']).subscribe(
               util => {
                 console.log('deuxieme appel (partieForm.value) ok');
-                console.log('value de nouveau mj : ' + util.id );
+                console.log('value de nouveau mj : ' + util.id);
                 mj = util;
-                this.partieService.update(new Partie(
-                  this.partieForm.value['id'],
-                  mj,
-                  this.partieForm.value['image'],
-                  this.partieForm.value['titre'],
-                  this.partieForm.value['description'],
-                  this.partieForm.value['nbJoueurs']
-                )).subscribe(
-                  partieMaj => {
-                    console.log('Partie maj, id = ' + partieMaj.id);
-                    this.partieForm.reset();
-                    this.formSubmitted = false;
-                    if (mj.id === this.entree.mj.id) {
-                      console.log('UPDATED');
-                      this.sortie.emit('UPDATED');
-                    } else {console.log('MJ CHANGED');
-                      this.sortie.emit('MJCHANGED');
-                    }
-                  }
-                );
+                const id = this.partieForm.value['id'];
+                this.uploadService.pushUpload(this.currentUpload, id, 1).then( // upload img dans firebase et recup de l' url
+                  (upload) => {
+
+                    this.partieService.update(new Partie(
+                      id,
+                      mj,
+                      upload.url,
+                      //     this.partieForm.value['image'],
+                      this.partieForm.value['titre'],
+                      this.partieForm.value['description'],
+                      this.partieForm.value['nbJoueurs']
+                    )).subscribe(
+                      partieMaj => {
+                        console.log('Partie maj, id = ' + partieMaj.id);
+                        this.messageService.showSuccess('Update partie', '');
+                        this.partieForm.reset();
+                        this.formSubmitted = false;
+                        if (mj.id === this.entree.mj.id) {
+                          console.log('UPDATED');
+                          this.sortie.emit('UPDATED');
+                        } else {
+                          console.log('MJ CHANGED');
+                          this.sortie.emit('MJCHANGED');
+                        }
+                      }
+                    );
+                  });
               }
             );
           }

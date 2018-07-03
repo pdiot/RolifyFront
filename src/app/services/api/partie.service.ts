@@ -33,7 +33,7 @@ export class PartieService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for utilisateur consumption
-      this.log(`${operation} failed: ${error.message}`, 'Error');
+   //   this.log(`${operation} failed: ${error.message}`, 'Error');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

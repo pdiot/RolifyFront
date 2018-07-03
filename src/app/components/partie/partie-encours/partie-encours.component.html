@@ -57,8 +57,8 @@
           <app-dice></app-dice>
         </div>
       </div>
-      <div *ngIf="partie" class="col">
-        <app-partie-image [img]="partie.image"></app-partie-image>
+      <div class="col">
+        <app-partie-image *ngIf="partie" [img]="partie.image" [partie]="partie"></app-partie-image>
       </div>
     </div>
     <div class="row liste-personnages">
@@ -73,6 +73,16 @@
   </div>
   <div class="modal-body">
     <app-partie-form [entree]="partie" [currentUser]="currentUser" (sortie)="onClose($event)"></app-partie-form>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+
+<ng-template #persoForm let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <app-personnage-details [partie]="partie" [currentUser]="currentUser" (sortie)="onClose($event)"></app-personnage-details>
   </div>
   <div class="modal-footer">
   </div>

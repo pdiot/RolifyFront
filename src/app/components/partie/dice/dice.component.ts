@@ -25,7 +25,7 @@ export class DiceComponent implements OnInit {
         sessionStorage.setItem('value', '' + -1);
         this.resul = -1;
       },
-      2000);
+      1000);
   }
 
 

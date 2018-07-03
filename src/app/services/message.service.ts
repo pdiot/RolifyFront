@@ -11,7 +11,12 @@ export class MessageService {
 
   showSuccess(text: string, title: string) {
     // this.msgs = [];
-    this.msgs.push({ severity: 'success', summary: title, detail: text });
+    this.msgs.push({ severity: 'info', summary: title, detail: text });
+  }
+
+  showError(text: string, title: string) {
+    // this.msgs = [];
+    this.msgs.push({ severity: 'error', summary: title, detail: text });
   }
 
 }

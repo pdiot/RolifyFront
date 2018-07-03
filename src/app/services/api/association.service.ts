@@ -16,7 +16,7 @@ export class AssociationService {
 
   /** Log a PartieService message with the MessageService */
   private log(message: string, title: string) {
-    this.messageService.showSuccess(message, title);
+ //   this.messageService.showSuccess(message, title);
   }
 
   /**
@@ -32,7 +32,7 @@ export class AssociationService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for utilisateur consumption
-      this.log(`${operation} failed: ${error.message}`, 'Error');
+   //   this.log(`${operation} failed: ${error.message}`, 'Error');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
@@ -63,6 +63,14 @@ export class AssociationService {
       .pipe(
         tap(incidents => this.log(`fetched Association`, 'Fetch Table')),
         catchError(this.handleError('getincidents', []))
+      );
+  }
+
+  getAssociationsJoueurPartie(utilId: string, partieId: number): Observable<Association[]> {
+    return this.http.get<Association[]>(this.baseUrl + '/partie/' + partieId + '/joueur/' + utilId )
+      .pipe(
+        tap(associations => this.log(`fetched Association`, 'Fetch Table')),
+        catchError(this.handleError('getassociations', []))
       );
   }
 

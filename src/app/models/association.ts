@@ -9,4 +9,12 @@ export class Association {
   partie: Partie;
   personnage: Personnage;
   role: Role;
+
+  constructor(id: number, utilisateur: Utilisateur, partie: Partie, personnage: Personnage, role: Role) {
+    this.id = id;
+    this.utilisateur = utilisateur;
+    this.partie = partie;
+    this.personnage = personnage;
+    this.role = role;
+  }
 }

@@ -111,13 +111,14 @@ export class EditUserComponent implements OnInit {
       const newEmail = this.emailForm.get('email').value;
       this.authService.updateEmail(email, password, newEmail)
         .then(() => {
-          // TODO message update reussie
           this.emailForm.get('email').setValue(newEmail);
           this.signinForm.get('ActEmail').setValue(newEmail);
           this.signinForm.get('ActPsw').setValue(null);
           this.isReAuth = false;
           this.errorMessage = '';
           this.refresh.emit(false);
+          this.messageService.showSuccess('Update Email', '');
+
         })
         .catch(err => {
           this.errorMessage = err;
@@ -135,6 +136,7 @@ export class EditUserComponent implements OnInit {
         this.errorMessage = '';
         this.isReAuth = false;
         this.refresh.emit(false);
+        this.messageService.showSuccess('Update Password', '');
 
       })
         .catch(err => {
@@ -176,7 +178,7 @@ export class EditUserComponent implements OnInit {
                 util.pseudo = pseudo;
                 util.urlAvatar = this.currentUser.photoURL;
                 this.utilisateurService.updateInfo(util).subscribe(result => {
-                  this.messageService.showSuccess('Update ' + result.pseudo, 'BDD');
+                  this.messageService.showSuccess('Update ' + result.pseudo, '');
                   this.errorMessagePsImg = '';
                   this.refresh.emit(false);
                 });
@@ -203,7 +205,7 @@ export class EditUserComponent implements OnInit {
             util.pseudo = pseudo;
             util.urlAvatar = this.currentUser.photoURL;
             this.utilisateurService.updateInfo(util).subscribe(result => {
-              this.messageService.showSuccess('Update ' + result.pseudo, 'BDD');
+              this.messageService.showSuccess('Update ' + result.pseudo, '');
               this.errorMessagePsImg = '';
               this.refresh.emit(false);
             });

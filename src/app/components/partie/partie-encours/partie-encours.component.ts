@@ -8,6 +8,8 @@ import { PartieImageComponent } from '../partie-image/partie-image.component';
 import { PartieService } from '../../../services/api/partie.service';
 import { Role } from '../../../enums/role.enum';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {AssociationService} from '../../../services/api/association.service';
+import {ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-partie-encours',
@@ -24,9 +26,12 @@ export class PartieEncoursComponent implements OnInit {
   modalRef;
   // dice: number;
 
+  @ViewChild('persoForm') persoForm;
+
   constructor(private auth: AuthService,
     private activatedRoute: ActivatedRoute,
     private partieService: PartieService,
+    private assoService: AssociationService,
     private authService: AuthService,
     private modalService: NgbModal,
     private router: Router) {
@@ -44,32 +49,30 @@ export class PartieEncoursComponent implements OnInit {
           partie => {
             this.partie = partie;
             console.log('this.partie = ' + this.partie);
+            this.authService.getCurrentUser().then(    // plus sure
+              (user) => {
+                this.currentUser = user;
+                console.log('User récupéré : uid = ' + user.uid);
+                console.log('this.role : ' + this.role);
+                if (this.role == 1) {
+                  console.log('On est un joueur')
+                  this.assoService.getAssociationsJoueurPartie(this.currentUser.uid, this.partie.id).subscribe(
+                    associations => {
+                      console.log('On a récupéré les associations');
+                      if (associations.length === 0) {
+                        console.log('Associations.length === 0');
+                        this.modalRef = this.modalService.open(this.persoForm);
+                      }
+                    }
+                  );
+                }
+              },
+              (error) => {
+                this.currentUser = null;
+              });
           }
         );
       });
-
-    this.authService.getCurrentUser().then(    // plus sure
-      (user) => {
-        this.currentUser = user;
-        //  // console.log('current user : ' + this.auth.currentUser);
-
-        //   this.activatedRoute.params.subscribe(
-        //     params => {
-        //       this.partieId = +params['idPartie'];
-        //       console.log('idPartie : ' + this.partieId);
-        //       this.role = params['role'];
-        //       this.partieService.getPartie(this.partieId).subscribe(
-        //         partie => {
-        //           this.partie = partie;
-        //           console.log('this.partie = ' + this.partie);
-        //         }
-        //       );
-        //     });
-      },
-      (error) => {
-        this.currentUser = null;
-      });
-
   }
 
   open(content) {
@@ -84,6 +87,11 @@ export class PartieEncoursComponent implements OnInit {
     if (event === 'MJCHANGED') {
       this.modalRef.close();
       this.router.navigateByUrl('/lobby');
+    }
+    if (event === 'CREATED') {
+      console.log('Sortie reçue');
+      this.modalRef.close();
+      this.ngOnInit();
     }
   }
 

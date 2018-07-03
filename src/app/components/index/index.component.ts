@@ -22,6 +22,9 @@ export class IndexComponent implements OnInit {
       if (user) {
         this.router.navigate(['/lobby']);
       }
+    })
+    .catch(err => {
+      console.log('nginit ' + err);
     });
 
     // // console.log('in index' + this.currentUserService.currentUser.displayName);

@@ -16,7 +16,7 @@ export class ChatPartieService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string, title: string) {
-    this.messageService.showSuccess(message, title);
+  //  this.messageService.showSuccess(message, title);
   }
 
   /**
@@ -32,7 +32,7 @@ export class ChatPartieService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for chat consumption
-      this.log(`${operation} failed: ${error.message}`, 'Error');
+   //   this.log(`${operation} failed: ${error.message}`, 'Error');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

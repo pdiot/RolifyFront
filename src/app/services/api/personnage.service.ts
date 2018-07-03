@@ -12,13 +12,13 @@ import {Personnage} from '../../models/personnage';
 })
 export class PersonnageService {
 
-  baseUrl = 'http://localhost:8080/backend/api/parties';
+  baseUrl = 'http://localhost:8080/backend/api/personnages';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   /** Log a PartieService message with the MessageService */
   private log(message: string, title: string) {
-    this.messageService.showSuccess(message, title);
+  //  this.messageService.showError(message, title);
   }
 
   /**
@@ -34,7 +34,7 @@ export class PersonnageService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for utilisateur consumption
-      this.log(`${operation} failed: ${error.message}`, 'Error');
+    //  this.log(`${operation} failed: ${error.message}`, 'Error');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
@@ -45,7 +45,7 @@ export class PersonnageService {
     // this.log('HeroService: fetched heroes');
     return this.http.get<Personnage[]>(this.baseUrl)
       .pipe(
-        tap(incidents => this.log(`fetched Personnage`, 'Fetch Table')),
+        tap(_ => {}),
         catchError(this.handleError('getincidents', []))
       );
   }

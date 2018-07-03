@@ -1,4 +1,4 @@
-<div class="chatlist">
+<div #cont class="chatlist">
   <p id="chat_title">#LOBBY CHANNEL</p>
   <ul class="list-group">
     <app-chat-item *ngFor="let chat of chats" [chat]="chat" [currentUser]="currentUser"></app-chat-item>

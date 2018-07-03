@@ -26,6 +26,14 @@ border: none;
 }
 
 
+.system {
+ background-color: rgb(108, 172, 26);
+}
+
+/* .systemSub {
+
+} */
+
 .avatar {
     width: 40px;
   height: 40px;

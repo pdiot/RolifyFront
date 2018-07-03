@@ -1,10 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Chat } from '../../../models/chat';
 import { ChatGlobalService } from '../../../services/api/chat-global.service';
 import { MessageService } from '../../../services/message.service';
 import { AuthService } from '../../../services/auth.service';
 import { UtilisateurService } from '../../../services/api/utilisateur.service';
 import { User } from 'firebase';
+import { ChatPartieService } from '../../../services/api/chat-partie.service';
+import { Chatpartie } from '../../../models/chatpartie';
+import { PartieService } from '../../../services/api/partie.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -30,44 +33,35 @@ export class ChatListComponent implements OnInit {
 
   dice: number;
 
+  @ViewChild('cont') cont: any;
+
   constructor(private authService: AuthService,
     private utilisateurService: UtilisateurService,
     private chatService: ChatGlobalService,
+    private chatPartieService: ChatPartieService,
+    private partieService: PartieService,
     private messageService: MessageService) {
 
   }
 
-
+  // scrolls to bottom whenever the page has loaded
+  ionViewDidEnter() {
+    this.cont.scrollToBottom(300); // 300ms animation speed
+  }
 
 
   ngOnInit() {
     sessionStorage.setItem('value', '-1');
 
-
-
-    // if (this.dice) {
-    //   console.log('in chat list dice : ' + this.dice);
-    //   this.utilisateurService.getUtilisateur('1').subscribe(util => {
-    //     this.partieService.getPartie(this.idPartie).subscribe(partie => {
-    //       this.chatPartieService.add(new Chatpartie('Lancer de dés: ' + this.dice, util, partie)).subscribe(result => {
-    //         //   this.messageService.showSuccess('add chatpartie ' + util.pseudo, 'BDD');
-    //         this.content = '';
-    //       });
-    //     });
-    //   });
-    // }
-
-    console.log('in chat list idPartie ' + this.idPartie);
-    // this.idPartie = 2;
     if (this.idPartie === 0) {   // global chat
       this.chatService.getChats()
         .subscribe(tab => {
           this.chats = tab;
           console.log('document.body.scrollHeight ' + document.body.scrollHeight);
-          window.scrollTo(0, document.body.scrollHeight);
+          //  this.cont.scrollToBottom(300); // 300ms animation speed
           setInterval(() =>
             this.getChats(0)
-            , 2000);
+            , 1000);
         });
 
     } else {   // chat partie
@@ -84,20 +78,39 @@ export class ChatListComponent implements OnInit {
             if (this.dice !== -1) { this.sendMsgDice(this.dice); }
             this.getChats(this.idPartie);
           }
-            , 2000);
+            , 1000);
         });
     }
 
   }
 
-   getChats() {
-    this.chatService.getChats()
-    .subscribe(tabRefr => {
-      let i = tabRefr.findIndex((chat) => chat.id === this.chats[this.chats.length - 1].id);
-      for (i + 1; i < tabRefr.length - 1; i++) {
-        this.chats.push(tabRefr[i + 1]);
-      }
-    });
+  getChats(id: number) {
+    if (id === 0) {
+      this.chatService.getChats()
+        .subscribe(tabRefr => {
+          if (this.chats.length === 0) {
+            this.chats = tabRefr;
+          } else {
+            let i = tabRefr.findIndex((chat) => chat.id === this.chats[this.chats.length - 1].id);
+            for (i + 1; i < tabRefr.length - 1; i++) {
+              this.chats.push(tabRefr[i + 1]);
+            }
+          }
+        });
+
+    } else {
+      this.chatPartieService.getChats(id)
+        .subscribe(tabRefr => {
+          if (this.chats.length === 0) {
+            this.chats = tabRefr;
+          } else {
+            let i = tabRefr.findIndex((chat) => chat.id === this.chats[this.chats.length - 1].id);
+            for (i + 1; i < tabRefr.length - 1; i++) {
+              this.chats.push(tabRefr[i + 1]);
+            }
+          }
+        });
+    }
   }
 
 
@@ -107,19 +120,28 @@ export class ChatListComponent implements OnInit {
         this.utilisateurService.getUtilisateur(this.authService.currentUser.uid).subscribe(util => {
           // enregistrement dans la bdd
           this.chatService.add(new Chat(this.content, util)).subscribe(result => {
-            this.messageService.showSuccess('add chat ' + util.pseudo, 'BDD');
+            //  this.messageService.showSuccess('add chat ' + util.pseudo, 'BDD');
             this.content = '';
           });
         });
-      });
 
+      } else {
+        this.utilisateurService.getUtilisateur(this.authService.currentUser.uid).subscribe(util => {
+          this.partieService.getPartie(this.idPartie).subscribe(partie => {
+            this.chatPartieService.add(new Chatpartie(this.content, util, partie)).subscribe(result => {
+              //  this.messageService.showSuccess('add chatpartie ' + util.pseudo, 'BDD');
+              this.content = '';
+            });
+          });
+        });
+      }
     }
   }
 
-  sendMsgDice(n: number) {
-    this.utilisateurService.getUtilisateur('system').subscribe(util => { // utilisateur systeme
+  sendMsgDice(n: number) {   // msg avec resultat du lancer from utilisateur
+    this.utilisateurService.getUtilisateur('sys').subscribe(util => { // utilisateur systeme
       this.partieService.getPartie(this.idPartie).subscribe(partie => {
-        this.chatPartieService.add(new Chatpartie('Résultat du lancer de dés: ' + n, util, partie)).subscribe(result => {
+        this.chatPartieService.add(new Chatpartie('' + n, util, partie)).subscribe(result => {
           //  this.messageService.showSuccess('Résultat ' + util.pseudo, 'BDD');
           this.content = '';
         });

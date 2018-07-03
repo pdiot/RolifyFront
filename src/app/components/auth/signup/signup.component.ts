@@ -66,17 +66,17 @@ export class SignupComponent implements OnInit {
               (upload) => {
                 this.authService.updateNamePhoto(pseudo, upload.url).then( // enregistrement du pseudo et de l'url dans firebase
                   () => {
-                    this.router.navigate(['/lobby']);
+                    // enregistrement dans la bdd
+                    this.utilisateurService.add(new Utilisateur(user.uid, pseudo, upload.url)).subscribe(result => {
+                      this.router.navigate(['/lobby']);
+                      this.messageService.showSuccess(pseudo, 'Welcome');
+                    });
                   },
                   (error) => {
                     this.router.navigate(['/lobby']);
-                  //  this.messageService.showSuccess('Welcome ' + pseudo + '; error name or photo: ' + error, 'NEW PLAYER');
+                    this.messageService.showError('Oops.. error name or photo: ' + error, 'NEW PLAYER');
                   });
-                // enregistrement dans la bdd
-                this.utilisateurService.add(new Utilisateur(user.uid, pseudo, upload.url)).subscribe(result => {
-                //  this.messageService.showSuccess('Welcome ' + pseudo, 'BDD');
-                  console.log(result);
-                });
+
               },
               (error) => {
                 this.errorMessage = error;

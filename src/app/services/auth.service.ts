@@ -24,10 +24,10 @@ export class AuthService {
           (user) => {
             if (user) {
               this.currentUser = user;
-              this.messageService.showSuccess('Welcome ' + user.displayName, 'Get User');
+            //  this.messageService.showSuccess('Welcome ' + user.displayName, 'Get User');
               resolve(user);
             } else {
-               reject();
+               reject(user);
             }
           }
         );
@@ -40,7 +40,7 @@ export class AuthService {
       (resolve, reject) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(
           () => {
-            this.messageService.showSuccess('Welcome new  ' , 'Sign up');
+         //   this.messageService.showSuccess('Welcome new  ' , 'Sign up');
             resolve();
           },
           (error) => {
