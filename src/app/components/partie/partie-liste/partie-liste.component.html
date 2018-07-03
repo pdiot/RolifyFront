@@ -4,26 +4,26 @@
   <thead>
     <th style="width: 15em">NOM</th>
     <th style="width: 5em">JOUEURS</th>
-    <th style="width: 16em">MAITRE DU JEU</th>
-    <th style="width: 5em"></th>
-    <th style="width: 5em"></th>
+    <th style="width: 15em">MAITRE DU JEU</th>
+    <th style="width: 2em"></th>
+    <th style="width: 2em"></th>
     <!-- <th><button type=button class="btn" (click)="open(content)">nouvelle partie</button>
     </th> -->
   </thead>
   <tbody>
     <tr *ngFor="let partie of partiesMJ" app-partie-preview [partie]="partie">
-      <td style="width: 5em">
+      <td style="width: 2em">
         <button class="btn" [routerLink]="['/partie', partie.id, 0]">
           <i>
-            <img src="../../../../assets/elements/picto_go.png" class="picto"/>
+            <img src="../../../../assets/elements/picto_go.png" class="picto_go"/>
           </i>
         </button>
       </td>
-      <td style="width: 5em">
+      <td style="width: 2em">
         <button class="btn" (click)="delete(partie)">
           <i>
 
-            <img src="../../../../assets/elements/picto_delete.png" class="picto"/>
+            <img src="../../../../assets/elements/picto_delete.png" class="picto_delete"/>
           </i>
         </button>
       </td>
@@ -53,7 +53,7 @@
         <td style="width: 5em">
             <button class="btn" [routerLink]="['/partie', partie.id, 1]">
               <i>
-                <img src="../../../../assets/elements/picto_go.png" class="picto">
+                <img src="../../../../assets/elements/picto_go.png" class="picto_go">
               </i>
             </button>
           </td>
@@ -76,7 +76,7 @@
       <td style="width: 5em">
         <button class="btn-outline-danger" (click)="join(partie)">
 
-          <img src="../../../../assets/elements/picto_go.png" class="picto"/>
+          <img src="../../../../assets/elements/picto_go.png" class="picto_go"/>
         </button>
       </td>
 

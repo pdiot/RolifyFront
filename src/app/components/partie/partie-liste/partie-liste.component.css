@@ -32,6 +32,14 @@ h4 {
   font-size: 14px;
 }
 
+th,td,tbody, thead, tr{
+  border:none !important;
+  border-top:none !important;
+  border-bottom:none !important;
+
+
+}
+
 
 #add_party {
   width: 100%;
@@ -60,8 +68,13 @@ h4 {
 
 }
 
-.picto {
+.picto_go {
   width: 10px;
+  vertical-align: top !important;
+}
+
+.picto_delete {
+  width: 15px;
   vertical-align: top !important;
 }
 
