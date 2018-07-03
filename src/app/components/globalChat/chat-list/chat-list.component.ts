@@ -5,9 +5,6 @@ import { MessageService } from '../../../services/message.service';
 import { AuthService } from '../../../services/auth.service';
 import { UtilisateurService } from '../../../services/api/utilisateur.service';
 import { User } from 'firebase';
-import { ChatPartieService } from '../../../services/api/chat-partie.service';
-import { Chatpartie } from '../../../models/chatpartie';
-import { PartieService } from '../../../services/api/partie.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -17,7 +14,7 @@ import { PartieService } from '../../../services/api/partie.service';
 export class ChatListComponent implements OnInit {
 
 
-  // scrollCallback;
+  scrollCallback;
 
   @Input('currentUser')
   public currentUser: User;
@@ -36,8 +33,6 @@ export class ChatListComponent implements OnInit {
   constructor(private authService: AuthService,
     private utilisateurService: UtilisateurService,
     private chatService: ChatGlobalService,
-    private chatPartieService: ChatPartieService,
-    private partieService: PartieService,
     private messageService: MessageService) {
 
   }
@@ -95,27 +90,14 @@ export class ChatListComponent implements OnInit {
 
   }
 
-  getChats(id: number) {
-    if (id === 0) {
-      this.chatService.getChats()
-        .subscribe(tabRefr => {
-          let i = tabRefr.findIndex((chat) => chat.id === this.chats[this.chats.length - 1].id);
-          for (i + 1; i < tabRefr.length - 1; i++) {
-            this.chats.push(tabRefr[i + 1]);
-          }
-        });
-
-    } else {
-      this.chatPartieService.getChats(id)
-        .subscribe(tabRefr => {
-          if (this.chats.length > 0) {
-            let i = tabRefr.findIndex((chat) => chat.id === this.chats[this.chats.length - 1].id);
-            for (i + 1; i < tabRefr.length - 1; i++) {
-              this.chats.push(tabRefr[i + 1]);
-            }
-          }
-        });
-    }
+   getChats() {
+    this.chatService.getChats()
+    .subscribe(tabRefr => {
+      let i = tabRefr.findIndex((chat) => chat.id === this.chats[this.chats.length - 1].id);
+      for (i + 1; i < tabRefr.length - 1; i++) {
+        this.chats.push(tabRefr[i + 1]);
+      }
+    });
   }
 
 
@@ -129,17 +111,8 @@ export class ChatListComponent implements OnInit {
             this.content = '';
           });
         });
+      });
 
-      } else {
-        this.utilisateurService.getUtilisateur(this.authService.currentUser.uid).subscribe(util => {
-          this.partieService.getPartie(this.idPartie).subscribe(partie => {
-            this.chatPartieService.add(new Chatpartie(this.content, util, partie)).subscribe(result => {
-              this.messageService.showSuccess('add chatpartie ' + util.pseudo, 'BDD');
-              this.content = '';
-            });
-          });
-        });
-      }
     }
   }
 
