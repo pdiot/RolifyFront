@@ -7,21 +7,26 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class DiceComponent implements OnInit {
 
-  resul = -1;
-  @Output() refresh = new EventEmitter<number>();
+  public resul = -1;
+  // @Output() refresh = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
   }
 
   lancer() {
-    this.resul = Math.round((21 * Math.random()) - 0.5);
-    this.refresh.emit(this.resul);
+    this.resul = Math.round((20 * Math.random()) + 1);
+    sessionStorage.setItem('value', '' + this.resul);
+    console.log('in dice : ' + this.resul);
+    setTimeout(
+      () => {
+        sessionStorage.setItem('value', '' + -1);
+        this.resul = -1;
+      },
+      2000);
   }
 
-  reset() {
-    this.resul = -1;
-  }
 
 }

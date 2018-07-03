@@ -93,7 +93,8 @@ const appRoutes: Routes = [
     DialogModule,
     GrowlModule,
     AngularFontAwesomeModule,
-    MatSelectModule
+    MatSelectModule,
+
   ],
   providers: [AuthService, MessageService],
   bootstrap: [AppComponent]

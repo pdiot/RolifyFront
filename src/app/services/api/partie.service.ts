@@ -17,7 +17,7 @@ export class PartieService {
 
   /** Log a PartieService message with the MessageService */
   private log(message: string, title: string) {
-    this.messageService.showSuccess(message, title);
+  //  this.messageService.showSuccess(message, title);
   }
 
   /**

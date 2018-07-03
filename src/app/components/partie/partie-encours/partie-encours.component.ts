@@ -22,7 +22,7 @@ export class PartieEncoursComponent implements OnInit {
   partie: Partie;
   currentUser: User;
   modalRef;
-  dice: number;
+  // dice: number;
 
   constructor(private auth: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -87,9 +87,9 @@ export class PartieEncoursComponent implements OnInit {
     }
   }
 
-  refresh(n: number) {
-    console.log('n ' + n);
-    this.dice = n;
-  }
+  // refresh(n: number) {
+  //   console.log('n ' + n);
+  //   this.dice = n;
+  // }
 
 }
