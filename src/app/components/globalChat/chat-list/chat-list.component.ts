@@ -5,6 +5,9 @@ import { MessageService } from '../../../services/message.service';
 import { AuthService } from '../../../services/auth.service';
 import { UtilisateurService } from '../../../services/api/utilisateur.service';
 import { User } from 'firebase';
+import { ChatPartieService } from '../../../services/api/chat-partie.service';
+import { Chatpartie } from '../../../models/chatpartie';
+import { PartieService } from '../../../services/api/partie.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -35,6 +38,8 @@ export class ChatListComponent implements OnInit {
   constructor(private authService: AuthService,
     private utilisateurService: UtilisateurService,
     private chatService: ChatGlobalService,
+    private chatPartieService: ChatPartieService,
+    private partieService: PartieService,
     private messageService: MessageService) {
 
   }
@@ -53,7 +58,7 @@ export class ChatListComponent implements OnInit {
         .subscribe(tab => {
           this.chats = tab;
           console.log('document.body.scrollHeight ' + document.body.scrollHeight);
-        //  this.cont.scrollToBottom(300); // 300ms animation speed
+          //  this.cont.scrollToBottom(300); // 300ms animation speed
           setInterval(() =>
             this.getChats(0)
             , 1000);
@@ -119,7 +124,6 @@ export class ChatListComponent implements OnInit {
             this.content = '';
           });
         });
-      });
 
       } else {
         this.utilisateurService.getUtilisateur(this.authService.currentUser.uid).subscribe(util => {
