@@ -2,7 +2,13 @@
 height: 100%;
 }
 
+#chat_title {
+  margin-top: 15px;
+  border-bottom: solid 1px #232528;
+  padding-bottom: 19px;
+}
+
 .list-group {
   overflow-y: scroll;
-  height: 591px;
+  padding-top: 95%;
 }

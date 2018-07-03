@@ -7,7 +7,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" [routerLink]="" (click)="onSignOut()">DECONEXION</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="" (click)="onSignOut()">DECONNEXION</a></li>
         <li class="nav-item"><a class="nav-link" [routerLink]="" (click)="onOpenEditMod()">PARAMETRE</a></li>
       </ul>
       <span class="navbar-text">
@@ -18,14 +18,17 @@
 
 
   <div class="row">
-    <div class="col-7">
+    <div class="col-8">
       <div class="row">
         <div class="col-4" id="sidebar">
           <app-sidebar>
+            <p class="enligne"><img id="onlinepic" src="../../../assets/elements/online.png" height="7" width="6"/>EN LIGNE - <span class="yellow">1</span></p>
             <div *ngIf=currentUser>
-              <p *ngIf=currentUser.displayName> {{ currentUser.displayName }} </p>
-              <p>{{ currentUser.email }} </p>
-              <img class="avatar" *ngIf=currentUser.photoURL src={{currentUser.photoURL}} alt="Profile Picture" width="200px">
+
+              <p class="user_profil" *ngIf=currentUser.displayName>
+                <img class="avatar" *ngIf=currentUser.photoURL src={{currentUser.photoURL}}>
+                {{ currentUser.displayName }}</p>
+
             </div>
 
 
@@ -50,7 +53,7 @@
 
     <!--_____________partie liste______________________________________-->
 
-    <div class="col-5" id="party">
+    <div class="col-4" id="party">
       <app-partie-liste></app-partie-liste>
     </div>
   </div>

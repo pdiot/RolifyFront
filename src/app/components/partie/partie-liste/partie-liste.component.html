@@ -2,17 +2,11 @@
 
 <table class="table tabParties">
   <thead>
-    <th style="width: 10em">NOM</th>
-    <th style="width: 10em">JOUEURS</th>
-    <th style="width: 10em">MAITRE DU JEU</th>
+    <th style="width: 15em">NOM</th>
+    <th style="width: 5em">JOUEURS</th>
+    <th style="width: 16em">MAITRE DU JEU</th>
     <th style="width: 5em"></th>
-    <th style="width: 5em">
-      <button class="btn" (click)="open(content)">
-        <i>
-          <img src="../../../assets/icons/plus.png" width="20px">
-        </i>
-      </button>
-    </th>
+    <th style="width: 5em"></th>
     <!-- <th><button type=button class="btn" (click)="open(content)">nouvelle partie</button>
     </th> -->
   </thead>
@@ -39,16 +33,18 @@
 
 </table>
 
-<div id="add_party"></div>
+<!-- AJOUTER UNE PARTIE -->
+<button id="add_party" [routerLink]="['/partie', partie.id, 0]"></button>
 
 <!-- <button type=button class="btn" (click)="open(content)">Créer une nouvelle partie en tant que MJ</button> -->
 <h4>MES PARTIES EN COURS</h4>
 <table class="table tabParties">
     <thead>
-    <th style="width: 10em">Nom</th>
-    <th style="width: 5em">Joueurs</th>
-    <th style="width: 10em">Maître du jeu</th>
-    <th style="width: 5em">Entrer</th>
+    <th style="width: 15em">NOM</th>
+    <th style="width: 5em">JOUEURS</th>
+    <th style="width: 16em">MAITRE DU JEU</th>
+    <th style="width: 5em"></th>
+    <th style="width: 5em">
 
   </thead>
   <tbody>
@@ -67,10 +63,11 @@
 <h4>PARTIES DISPONIBLES</h4>
 <table class="table tabParties">
     <thead>
-    <th style="width: 10em">Nom</th>
-    <th style="width: 5em" >Dispo</th>
-    <th style="width: 10em">Maître du jeu</th>
-    <th style="width: 5em">Join</th>
+    <th style="width: 15em">NOM</th>
+    <th style="width: 5em">JOUEURS</th>
+    <th style="width: 16em">MAITRE DU JEU</th>
+    <th style="width: 5em"></th>
+    <th style="width: 5em">
 
   </thead>
   <tbody>

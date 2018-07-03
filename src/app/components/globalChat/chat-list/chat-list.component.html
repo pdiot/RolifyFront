@@ -1,4 +1,5 @@
 <div class="chatlist">
+  <p id="chat_title">#LOBBY CHANNEL</p>
   <ul class="list-group">
     <app-chat-item *ngFor="let chat of chats" [chat]="chat" [currentUser]="currentUser"></app-chat-item>
   </ul>
@@ -6,9 +7,9 @@
   <div class="chatcontrol input-group mb-3">
     <input type="text" class="form-control chatinput" [(ngModel)]="content" placeholder="" aria-label="" aria-describedby="basic-addon2">
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button" (click)="sendMessage()">Send</button>
+      <button class="btn btn-outline-secondary" type="button" (click)="sendMessage()">Envoyer</button>
     </div>
   </div>
 
 
-</div> 
+</div>
