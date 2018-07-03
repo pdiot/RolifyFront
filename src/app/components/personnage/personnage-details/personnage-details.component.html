@@ -43,7 +43,25 @@
       <div style="visibility: hidden" class="form-group">
         <input type="text" class="form-control" id="inputId" formControlName="id">
       </div>
-      <!-- TODO avatar -->
+      <!-- Avatar -->
+      <div class="form-row">
+        <div class="form-group col-md butUpConf">
+          <div>
+            <label for="inputImage">{{imageText}}</label>
+            <div class="upload-btn-wrapper">
+              <button *ngIf="!url" class="btn btnUpl">Choisir une image</button>
+              <button *ngIf="url" class="btn btnUrl">{{url}}</button>
+              <input type="file" (change)="onFileChanged($event)" id="inputImage" name="myfile" class="form-control" formControlName="image" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Avatar -->
+      <div *ngIf="!persoForm.invalid">
+        <div class="progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+        </div>
+      </div>
       <div class="form-row">
         <div class="form-group col-md">
           <label for="inputNom">Nom du personnage</label>
@@ -127,7 +145,7 @@
       <div class="form-row">
         <div class="form-group col-md">
           <label for="inputInv">Inventaire</label>
-          <input type="text" class="form-control" id="inputInv" placeholder="Equipement du personnage" formControlName="inventaire">
+          <input type="text" class="form-control" id="inputInv" placeholder="Inventaire du personnage" formControlName="inventaire">
         </div>
       </div>
       <div class="form-row">
