@@ -57,8 +57,8 @@
           <app-dice></app-dice>
         </div>
       </div>
-      <div *ngIf="partie" class="col">
-        <app-partie-image [img]="partie.image"></app-partie-image>
+      <div class="col">
+        <app-partie-image *ngIf="partie" [img]="partie.image" [partie]="partie"></app-partie-image>
       </div>
     </div>
     <div class="row liste-personnages">

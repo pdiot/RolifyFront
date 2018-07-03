@@ -37,6 +37,7 @@ export class SigninComponent implements OnInit {
     this.authService.signInUser(email, password).then(
       () => {
         this.router.navigate(['/lobby']);
+        this.messageService.showSuccess('Welcome back', '');
       },
       (error) => {
         this.errorMessage = error;

@@ -8,6 +8,7 @@
 
 .tabParties tbody {
   display: block;
+  overflow-y: scroll;
   height: 60px;
   overflow-y: scroll;
 }

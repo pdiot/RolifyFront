@@ -16,7 +16,7 @@ export class UtilisateurService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string, title: string) {
-    this.messageService.showSuccess(message, title);
+    this.messageService.showError(message, title);
   }
 
   /**
@@ -32,7 +32,7 @@ export class UtilisateurService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for utilisateur consumption
-      this.log(`${operation} failed: ${error.message}`, 'Error');
+    //  this.log(`${operation} failed: ${error.message}`, 'Error');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

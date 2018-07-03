@@ -9,6 +9,7 @@ height: 100%;
 }
 
 .list-group {
+  height: 30em;
   overflow-y: scroll;
   height: 32em;
 }
