@@ -1,33 +1,50 @@
+
+
 <div class="row">
   <div class="col-4">
     <app-sidebar>
-      <div class="col-3">
-        <!-- <app-liste-joueurs *ngIf="partie" [partie]="partie"></app-liste-joueurs> -->
+      <div class="col-4">
+        <app-sidebar>
+          <p class="enligne"><img id="onlinepic" src="../../../assets/elements/online.png" height="7" width="6"/>EN LIGNE - <span class="yellow">1</span></p>
+          <div *ngIf=currentUser>
+
+            <p class="user_profil" *ngIf=currentUser.displayName>
+              <img class="avatar" *ngIf=currentUser.photoURL src={{currentUser.photoURL}}>
+              {{ currentUser.displayName }}</p>
+
+          </div>
+        </app-sidebar>
       </div>
-      <div class="col-9 chatform">
+      <div class="col-8 chatform">
         <app-chat-list *ngIf="partie" [currentUser]="currentUser" [idPartie]="partieId"></app-chat-list>
       </div>
     </app-sidebar>
   </div>
   <div class="col-8">
     <div class="row">
-      <div class="col-2">
-        <a routerLink="/lobby">QUITTER</a>
+      <div class="col-8">
+        <nav class="navbar navbar-expand-lg">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item"><a class="nav-link" routerLink="/lobby">QUITTER</a></li>
+              <li class="nav-item"><a class="nav-link" [routerLink]="">PARAMETRES</a></li>
+              <div *ngIf="role == 0; then thenBlock else elseBlock"></div>
+              <ng-template #thenBlock>
+                <div class="nav-item">
+                  <a (click)="open(content)">Editer la partie</a>
+                </div>
+              </ng-template>
+              <ng-template #elseBlock>
+                <div class="nav-item"></div>
+              </ng-template>
+            </ul>
+          </div>
+        </nav>
       </div>
-      <div class="col-2">
-        <a>PARAMETRES</a>
-      </div>
-      <div *ngIf="role == 0; then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock>
-        <div class="col-3">
-          <a (click)="open(content)">Editer la partie</a>
-        </div>
-        <div class="col-3"></div>
-      </ng-template>
-      <ng-template #elseBlock>
-        <div class="col-6"></div>
-      </ng-template>
-      <div *ngIf="partie" class="col-2">{{partie.titre}}</div>
+      <div *ngIf="partie" class="col-4"><h3>{{partie.titre}}</h3></div>
     </div>
     <div class="row">
       <div class="col-4">

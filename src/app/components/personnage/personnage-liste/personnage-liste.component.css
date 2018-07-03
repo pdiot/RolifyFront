@@ -1,3 +1,9 @@
 .personnage-list {
   column-count: 2;
+  width: 100%;
+}
+
+.wrapper {
+  background-color: #E2C447;
+  width: 100%;
 }

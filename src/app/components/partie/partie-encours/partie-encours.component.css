@@ -1,0 +1,82 @@
+/* overwrite du BODY */
+::ng-deep body{
+  background-color: #232528;
+  color: white;
+}
+
+/* unvisited link */
+a:link{
+  color: #E2C447;
+  text-decoration: none;
+  font-weight:400;
+}
+
+/* visited link */
+a:visited {
+  color: #E2C447;
+  font-weight:400;
+}
+
+/* mouse over link */
+a:hover {
+  color: white;
+  font-weight:400;
+}
+
+/* selected link */
+a:active {
+  color: #E2C447;
+  font-weight:400;
+}
+
+/* SIDEBAR CHAT LIST */
+
+#sidebar {
+  background-color: #484B52;
+  height: 100%;
+}
+
+.enligne {
+  margin-top: 18px;
+  margin-left: 10px;
+  border-bottom: solid 1px #232528;
+  padding-bottom: 16px
+}
+
+#onlinepic {
+  margin-right: 5px;
+}
+
+.yellow {
+  color: #E2C447;
+}
+
+.user_profil {
+  color: #E2C447;
+  margin-top: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.avatar {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* CHAT */
+#chat {
+  background-color: #36393E;
+  height: 100%;
+}
+
+.dice {
+  /* Align middle ? */
+}
+
+app-dice {
+  background-color: #E2C447;
+  width: 10%;
+}
+
