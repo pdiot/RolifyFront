@@ -1,46 +1,54 @@
 .list-group-item {
-    border-radius: 10px;
-    margin: 3px;
-    padding-bottom: 0;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-    box-shadow: 0 4px 8px 0 rgba(15, 245, 245, 0.863), 0 6px 20px 0 rgba(10, 243, 243, 0.19);
+border: none;
+  background-color: transparent;
+
 }
 
 .perso {   /* msg du user */
-background-color: rgba(122, 219, 243, 0.877);
-color: black;
+  border-radius: 10px;
+  background-color: #E2C447;
+  padding-top: 7px;
+  color: #131516;
 }
-
-/* .persoSub{
-background-color: blueviolet;
-} */
 
 .other {    /* msg autre */
-background-color: whitesmoke;
-color: black;
+  border-radius: 10px;
+  background-color: white;
+  padding-top: 7px;
+  color: #18191C;
 }
 
-/* .otherSub {
-background-color: bisque;
-} */
+.system {    /* msg system */
+  border-radius: 10px;
+  background-color: #E2E2E2;
+  padding-top: 7px;
+  color: #18191C;
+}
+
 
 .avatar {
-    max-width: 100%;
-    border-radius: 100%;
+    width: 40px;
+  height: 40px;
+    border-radius: 50%;
 }
 
 .img {
-    text-align: center;
+
 }
 
 .pseudo {
     font-size: 1.2em;
-    padding-bottom: 0;
+  padding-left: 14px;
+  padding-top: 4px;
+  color: white;
+  font-size: 18px;
+  font-weight: 200;
+  margin-top: 1px;
 }
 
 .time {
     justify-content: flex-end;
- margin-right: 0.1em;
+  text-align: right;
 }
 
 .form-text {
@@ -55,4 +63,8 @@ background-color: bisque;
 p {
     width: 100%;
     overflow-wrap: break-word;
+  padding-left: 18px;
 }
+
+
+

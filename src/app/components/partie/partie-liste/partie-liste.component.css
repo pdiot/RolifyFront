@@ -9,6 +9,7 @@
 .tabParties tbody {
   display: block;
   height: 60px;
+  overflow-y: scroll;
 }
 
 h4 {
@@ -30,6 +31,7 @@ h4 {
   font-weight: 200;
   font-size: 14px;
 }
+
 
 #add_party {
   width: 100%;
@@ -56,5 +58,14 @@ h4 {
   background-size: 36px;
   border-radius: 10px;
 
+}
 
+.picto {
+  width: 10px;
+  vertical-align: top !important;
+}
+
+button {
+  border:none;
+  background-color: transparent;
 }

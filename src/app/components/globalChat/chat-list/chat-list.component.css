@@ -10,5 +10,23 @@ height: 100%;
 
 .list-group {
   overflow-y: scroll;
-  padding-top: 95%;
+  height: 32em;
 }
+
+.input-group {
+  background-color: #18191C;
+  margin: 10px;
+}
+
+.btn-outline-secondary {
+  background-color: #E2C447;
+  color: #131516;
+  border: none;
+}
+
+.btn-outline-secondary:hover{
+  background-color: #FFDE52;
+  color: #131516;
+  border: none;
+}
+

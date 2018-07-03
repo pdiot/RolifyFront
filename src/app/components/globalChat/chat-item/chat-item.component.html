@@ -1,24 +1,32 @@
-<li class="list-group-item" [ngClass]="{'perso' : currentUser && currentUser.uid === chat.source.id, 'other' : currentUser && currentUser.uid !== chat.source.id}">
-  <div class="row" [ngClass]="{'persoSub' : currentUser && currentUser.uid === chat.source.id, 'otherSub' : currentUser && currentUser.uid !== chat.source.id}">
-    <div class="col-3 img">
-      <img [src]="chat.source.urlAvatar" class="avatar" />
+<li class="list-group-item"></li>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-1 img">
+      <img [src]="chat.source.urlAvatar" class="avatar"/>
     </div>
-    <div class="col-9">
-      <p class="pseudo">
-        {{chat.source.pseudo}}
-      </p>
-
+    <div class="col-8">
+      <p class="pseudo">{{chat.source.pseudo}}</p>
+    </div>
+    <div class="col-3 time">
+      <span class="form-text text-muted">{{chat.dateTime | age }}</span>
     </div>
   </div>
 
-  <div class="row message">
-    <p>{{chat.body}}</p>
+  <div class="row">
+    <div class="col-1">
+    </div>
+    <div class="col-11" [ngClass]="{'perso' : currentUser && currentUser.uid === chat.source.id,
+ 'other' : currentUser && currentUser.uid !== chat.source.id,
+ 'system' : 'sys'=== chat.source.id}">
+      <p>{{chat.body}}</p>
+    </div>
   </div>
 
-  <div class="row time">
-    <i aria-hidden="true">
-      <img src="../../../../assets/icons/clock.png">
-    </i>
-    <span class="form-text text-muted">{{chat.dateTime | age }}</span>
-  </div>
-</li>
+
+</div>
+
+
+
+
