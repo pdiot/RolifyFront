@@ -4,6 +4,7 @@
 
 .tabParties thead {
   display: block;
+  margin-bottom: 20px;
 }
 
 .tabParties tbody {
@@ -83,3 +84,10 @@ button {
   border:none;
   background-color: transparent;
 }
+
+.table th, .table td {
+
+  padding: 1px!important;
+  vertical-align: top!important;
+}
+

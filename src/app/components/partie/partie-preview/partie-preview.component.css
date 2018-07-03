@@ -2,6 +2,9 @@ th,td,tbody, thead, tr{
   border:none !important;
   border-top:none !important;
   border-bottom:none !important;
+  padding: 1px!important;
+  vertical-align: top!important;
 
 }
+
 

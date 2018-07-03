@@ -2,33 +2,34 @@
 
 <table class="table tabParties">
   <thead>
-    <th style="width: 15em">NOM</th>
-    <th style="width: 5em">JOUEURS</th>
-    <th style="width: 15em">MAITRE DU JEU</th>
-    <th style="width: 2em"></th>
-    <th style="width: 2em"></th>
+    <th style="width: 28em">NOM</th>
+    <th style="width: 8em">JOUEURS</th>
+    <th style="width: 18em">MAITRE DU JEU</th>
+    <th style="width: 10em"></th>
     <!-- <th><button type=button class="btn" (click)="open(content)">nouvelle partie</button>
     </th> -->
   </thead>
+  
   <tbody>
     <tr *ngFor="let partie of partiesMJ" app-partie-preview [partie]="partie">
-      <td style="width: 2em">
+
+
+      <td style="width: 10em">
         <button class="btn" [routerLink]="['/partie', partie.id, 0]">
           <i>
             <img src="../../../../assets/elements/picto_go.png" class="picto_go"/>
           </i>
         </button>
-      </td>
-      <td style="width: 2em">
         <button class="btn" (click)="delete(partie)">
           <i>
-
             <img src="../../../../assets/elements/picto_delete.png" class="picto_delete"/>
           </i>
         </button>
       </td>
+
       <!-- <a [routerLink]="['/partie', partie.id, 0]"><fa name="cog" animation="spin"></fa></a> -->
     </tr>
+
 
   </tbody>
 
