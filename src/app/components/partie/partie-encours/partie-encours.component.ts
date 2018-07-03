@@ -27,6 +27,7 @@ export class PartieEncoursComponent implements OnInit {
   // dice: number;
 
   @ViewChild('persoForm') persoForm;
+  @ViewChild('persoList') persoList;
 
   constructor(private auth: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -91,7 +92,7 @@ export class PartieEncoursComponent implements OnInit {
     if (event === 'CREATED') {
       console.log('Sortie reçue');
       this.modalRef.close();
-      this.ngOnInit();
+      this.persoList.ngOnInit();
     }
   }
 
