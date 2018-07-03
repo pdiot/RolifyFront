@@ -12,7 +12,7 @@ import {Personnage} from '../../models/personnage';
 })
 export class PersonnageService {
 
-  baseUrl = 'http://localhost:8080/backend/api/parties';
+  baseUrl = 'http://localhost:8080/backend/api/personnages';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 

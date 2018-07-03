@@ -77,3 +77,13 @@
   <div class="modal-footer">
   </div>
 </ng-template>
+
+<ng-template #persoForm let-c="close" let-d="dismiss">
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <app-personnage-details [partie]="partie" [currentUser]="currentUser" (sortie)="onClose($event)"></app-personnage-details>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>

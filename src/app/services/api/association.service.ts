@@ -66,6 +66,14 @@ export class AssociationService {
       );
   }
 
+  getAssociationsJoueurPartie(utilId: string, partieId: number): Observable<Association[]> {
+    return this.http.get<Association[]>(this.baseUrl + '/partie/' + partieId + '/joueur/' + utilId )
+      .pipe(
+        tap(associations => this.log(`fetched Association`, 'Fetch Table')),
+        catchError(this.handleError('getassociations', []))
+      );
+  }
+
   delete(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id)
       .pipe(

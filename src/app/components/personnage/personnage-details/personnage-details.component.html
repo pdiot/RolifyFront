@@ -1,146 +1,143 @@
-<div class="row">
-  <div class="col">
-    <img src={{personnage.urlAvatar}} alt="Avatar personnage" height="200px">
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <h2>{{formtitle}}</h2>
+    </div>
+  </div>
+  <div class="card-body">
+    <div *ngIf="!persoForm.valid && formSubmitted">
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['nom'].hasError('required')"> Le nom du personnage est obligatoire.</div>
+        <div class="card-body" *ngIf="persoForm.controls['nom'].hasError('minlength')"> Le nom du personnage doit faire au moins 1 caractère.</div>
+      </div>
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['race'].hasError('required')"> La race est obligatoire.</div>
+      </div>
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['classe'].hasError('required')"> La classe est obligatoire.</div>
+      </div>
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['sexe'].hasError('required')"> Le sexe est obligatoire.</div>
+      </div>
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['pv'].hasError('required')"> Le champ PV est obligatoire.</div>
+      </div>
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['fo'].hasError('required')"> Le champ Force est obligatoire.</div>
+      </div>
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['def'].hasError('required')"> Le champ Défense est obligatoire.</div>
+      </div>
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['es'].hasError('required')"> Le champ Esprit est obligatoire.</div>
+      </div>
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['int'].hasError('required')"> Le champ Intelligence est obligatoire.</div>
+      </div>
+      <div class="affichageErreurs card text-white bg-danger mb-3">
+        <div class="card-body" *ngIf="persoForm.controls['init'].hasError('required')"> Le champ Initiative est obligatoire.</div>
+      </div>
+    </div>
+    <form [formGroup]="persoForm" (ngSubmit)="submitForm()">
+      <button type="submit" class="btn btn-dark">{{buttontext}}</button>
+      <div style="visibility: hidden" class="form-group">
+        <input type="text" class="form-control" id="inputId" formControlName="id">
+      </div>
+      <!-- TODO avatar -->
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="inputNom">Nom du personnage</label>
+          <input type="text" class="form-control" id="inputNom" placeholder="Nom du personnage" formControlName="nom">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputRace">Race du personnage</label>
+          <select class="form-control" id="inputRace" formControlName="race">
+            <option [value]="'Humain'" >Humain</option>
+            <option [value]="'Nain'" >Nain</option>
+            <option [value]="'Gnome'" >Gnome</option>
+            <option [value]="'Orc'" >Orc</option>
+            <option [value]="'Elfe'" >Elfe</option>
+            <option [value]="'Troll'" >Troll</option>
+            <option [value]="'Ogre'" >Ogre</option>
+            <option [value]="'Zora'" >Zora</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputClasse">Classe du personnage</label>
+          <select class="form-control" id="inputClasse" formControlName="classe">
+            <option [value]="'Guerrier'" >Guerrier</option>
+            <option [value]="'Voleur'" >Voleur</option>
+            <option [value]="'Mage'" >Mage</option>
+            <option [value]="'Barde'" >Barde</option>
+            <option [value]="'Barbare'" >Barbare</option>
+            <option [value]="'Génomancien'" >Génomancien</option>
+            <option [value]="'Pirate'" >Pirate</option>
+            <option [value]="'Apothicaire'" >Apothicaire</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputSexe">Sexe du personnage</label>
+          <select class="form-control" id="inputSexe" formControlName="sexe">
+            <option [value]="'Homme'" >Homme</option>
+            <option [value]="'Femme'" >Femme</option>
+            <option [value]="'Autre'" >Autre</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="inputPv">Points de vie</label>
+          <input type="number" class="form-control" id="inputPv" placeholder="PV du personnage" formControlName="pv">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputFo">Force</label>
+          <input type="number" class="form-control" id="inputFo" placeholder="Force du personnage" formControlName="fo">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputDef">Défense</label>
+          <input type="number" class="form-control" id="inputDef" placeholder="Défense du personnage" formControlName="def">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEs">Esprit</label>
+          <input type="number" class="form-control" id="inputEs" placeholder="Esprit du personnage" formControlName="es">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputInte">Intelligence</label>
+          <input type="number" class="form-control" id="inputInte" placeholder="Intelligence du personnage" formControlName="int">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="inputInit">Initiative</label>
+          <input type="number" class="form-control" id="inputInit" placeholder="Initiative du personnage" formControlName="init">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="inputEquip">Equipement</label>
+          <input type="text" class="form-control" id="inputEquip" placeholder="Equipement du personnage" formControlName="equipement">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="inputInv">Inventaire</label>
+          <input type="text" class="form-control" id="inputInv" placeholder="Equipement du personnage" formControlName="inventaire">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="inputBackground">Background</label>
+          <input type="text" class="form-control" id="inputBackground" placeholder="Background du personnage" formControlName="background">
+        </div>
+      </div>
+    </form>
   </div>
 </div>
-<div class="row">
-  <div class="col">
-    <button id="changeAvatar" type="button" class="btn btn-warning">Changer d'avatar</button>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="nom">Nom</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="nom">{{personnage.nom}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="classe">Classe</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="classe">{{personnage.classe}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="race">Race</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="race">{{personnage.race}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="sexe">Sexe</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="sexe">{{personnage.sexe}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="pv">Pv</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="pv">{{personnage.pv}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="fo">Force</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="fo">{{personnage.fo}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="defense">Défense</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="defense">{{personnage.defense}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="esprit">Esprit</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="esprit">{{personnage.esprit}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="intelligence">Intelligence</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="intelligence">{{personnage.intelligence}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="initiative">Initiative</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="initiative">{{personnage.initiative}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="equipement">Equipement</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="equipement">{{personnage.equipement}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="inventaire">Inventaire</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="inventaire">{{personnage.inventaire}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <label for="background">Background</label>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <textarea id="background">{{personnage.background}}</textarea>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <button type=button class="btn btn-warning" (click)="click()">OK</button>
-  </div>
-</div>
+
 
