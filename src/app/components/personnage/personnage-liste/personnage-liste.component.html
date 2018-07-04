@@ -1,10 +1,8 @@
 <div class="row wrapper">
-
-      <p *ngFor="let tuplePersonnageJoueur of personnages">
+      <li *ngFor="let tuplePersonnageJoueur of personnages">
         <app-personnage-preview [tuplePersonnageJoueur]=tuplePersonnageJoueur><fa name="plus" size="5x" (click)="open(content, tuplePersonnageJoueur[0])"></fa></app-personnage-preview>
-      </p>
-
-  </div>
+      </li>
+</div>
 
 
 <ng-template #content let-c="close" let-d="dismiss">
