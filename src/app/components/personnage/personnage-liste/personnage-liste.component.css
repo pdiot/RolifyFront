@@ -4,6 +4,9 @@
 }
 
 .wrapper {
-  background-color: #E2C447;
-  width: 100%;
+  background-color: transparent;
+  width: 450px;
+  height: 195px;
+  padding: 20px 0px 0px 20px;
+  border: solid 1px #E2C447;
 }

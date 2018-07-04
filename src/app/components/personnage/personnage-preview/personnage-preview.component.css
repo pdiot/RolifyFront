@@ -1,1 +1,14 @@
+ul {list-style:none;}
 
+.avatar {width: 97px;}
+.title_spec {font-size: 14px; font-weight: 200; color: #E2C447;}
+.title { margin-right: 10px;}
+.pseudo {font-size: 18px; font-weight: 400; color: white; text-align: left;}
+.voir_fiche {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  margin-top: 60px;
+  margin-left: 23px;
+}
+.voir {width: 30px; eight: 30px; }

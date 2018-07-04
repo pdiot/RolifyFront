@@ -1,44 +1,30 @@
 <div class="row">
-  <div class="col-8">
-    <div class="row">
-      <div class="col-4">
-        <div class="row">
-          <div class="col">
-            {{tuplePersonnageJoueur[1].pseudo}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <img [src]="tuplePersonnageJoueur[0].urlAvatar">
-          </div>
-        </div>
-      </div>
-      <div clas="col-8">
-        <div class="row">
-          <div class="col-6">
-            <p>{{tuplePersonnageJoueur[0].nom}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <p>{{tuplePersonnageJoueur[0].race}}</p>
-          </div>
-          <div class="col-6">
-            <p>{{tuplePersonnageJoueur[0].classe}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <p>Points de vie : {{tuplePersonnageJoueur[0].pv}}</p>
-          </div>
-          <div class="col-6">
-            <p>Initiative : {{tuplePersonnageJoueur[0].initiative}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+
+  <div class="col-2"><img class="avatar" [src]="tuplePersonnageJoueur[0].urlAvatar"></div>
+  <div class="col-2 title">
+    <ul>
+      <li><span class="title_spec">NOM</span></li>
+      <li><span class="title_spec">RACE</span></li>
+      <li><span class="title_spec">CLASSE</span></li>
+      <li><span class="title_spec">VIE</span></li>
+      <li><span class="title_spec">INITIATIVE</span></li>
+    </ul>
   </div>
-  <div class="col">
-    <ng-content></ng-content>
+  <div class="col-5">
+    <ul>
+      <li>{{tuplePersonnageJoueur[0].nom}}</li>
+      <li>{{tuplePersonnageJoueur[0].race}}</li>
+      <li>{{tuplePersonnageJoueur[0].classe}}</li>
+      <li>{{tuplePersonnageJoueur[0].pv}}</li>
+      <li>{{tuplePersonnageJoueur[0].initiative}}</li>
+    </ul>
   </div>
+
+  <div class="col-2 voir_fiche"><img class="voir" src="../../../../assets/elements/voir.png"/></div>
+
 </div>
+<div class="row">
+  <div class="col-5"><p class="pseudo"> {{tuplePersonnageJoueur[1].pseudo}}</p></div>
+</div>
+
+
